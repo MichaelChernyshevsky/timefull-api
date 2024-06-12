@@ -1,0 +1,17 @@
+tags:
+- News_package
+# parameters:
+#   - name: user_id
+#     in: path
+#     description: "ID of the user"
+#     schema:
+#       type: string
+#       example: "1"
+responses:
+  "200":
+    description: "A successful response"
+    content:
+      application/json:
+        schema:
+          type: "string"
+  

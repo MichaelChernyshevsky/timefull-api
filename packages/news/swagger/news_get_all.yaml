@@ -1,12 +1,12 @@
 tags:
 - News_package
-# parameters:
-#   - name: user_id
-#     in: path
-#     description: "ID of the user"
-#     schema:
-#       type: string
-#       example: "1"
+parameters:
+  - name: page
+    in: page
+    description: "page number"
+    schema:
+      type: string
+      example: "1"
 responses:
   "200":
     description: "A successful response"

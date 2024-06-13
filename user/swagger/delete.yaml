@@ -5,7 +5,7 @@ parameters:
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/UserGet"
+      $ref: "#/definitions/DeleteUser"
     
 responses:
   "200":
@@ -18,12 +18,12 @@ responses:
     description: ""
 
 definitions:
-  UserGet:
+  DeleteUser:
     type: object
     properties:
       user_id:
         type: string
-        example: "1111"
+        example: "1"
 
 
 

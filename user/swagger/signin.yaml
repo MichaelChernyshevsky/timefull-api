@@ -21,7 +21,6 @@ definitions:
   SignIn:
     type: object
     properties:
-      
       email:
         type: string
         example: "example@email.com"

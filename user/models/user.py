@@ -1,7 +1,7 @@
 from config.extensions import db
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(250))
     password = db.Column(db.String(250))
     phone = db.Column(db.String(250))

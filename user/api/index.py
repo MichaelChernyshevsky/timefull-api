@@ -29,7 +29,7 @@ def signin():
 @swag_from('../swagger/signup.yaml')
 def signup():
     try:
-        data = create(request.get_json())
+        # data = create(request.get_json())
 
         return jsonify(
                 message = None,

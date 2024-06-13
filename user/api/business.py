@@ -12,6 +12,7 @@ def create(data):
                 sex = '',
             )
         print('created '*100)
+        print(user.serialize())
         
         db.session.add(user)
         db.session.commit()

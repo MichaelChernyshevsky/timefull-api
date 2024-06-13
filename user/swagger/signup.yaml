@@ -1,11 +1,11 @@
 tags:
-- News_package
+- User
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/NewsAdd"
+      $ref: "#/definitions/SignUp"
     
 responses:
   "200":
@@ -18,18 +18,16 @@ responses:
     description: ""
 
 definitions:
-  NewsAdd:
+  SignUp:
     type: object
     properties:
-      category_id:
-        type: int
-        example: 1
-      title:
+      
+      email:
         type: string
-        example: "some title"
-      text:
+        example: "example@email.com"
+      password:
         type: string
-        example: "some text"
+        example: "012345"
 
 
 

@@ -1,10 +1,12 @@
-from packages.exports import *
 from flasgger import Swagger
 
-
+from packages.exports import news_bp
+from user.api.index import user_bp
 
 def register_blueprints(app):
     app.register_blueprint(news_bp)
+    app.register_blueprint(user_bp)
+
 
 
 

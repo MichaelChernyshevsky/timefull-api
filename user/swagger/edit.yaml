@@ -22,12 +22,24 @@ definitions:
     type: object
     properties:
       user_id:
-        type: string
-        example: "1111"
+        type: int
+        example: 8
       name:
         type: string
         example: "012345"
       sex:
+        type: string
+        example: "male"
+      phone:
+        type: string
+        example: "89898123123"
+      age:
+        type: int
+        example: 20
+      name:
+        type: string
+        example: "male"
+      name2:
         type: string
         example: "male"
 

@@ -1,0 +1,30 @@
+tags:
+- User
+parameters:
+  - in: body
+    name: sendResetLinkRequest
+    type: Object
+    schema:
+      $ref: "#/definitions/AddPackage"
+    
+responses:
+  "200":
+    description: ""
+    content:
+      application/json:
+        schema:
+          type: "string"
+  "404":
+    description: ""
+
+definitions:
+  AddPackage:
+    type: object
+    properties:
+      package_id:
+        type: string
+        example: "1"
+
+
+
+

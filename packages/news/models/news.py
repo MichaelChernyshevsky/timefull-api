@@ -2,7 +2,7 @@ from config.extensions import db
 
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    category_id = db.Column(db.Integer,db.ForeignKey('NewsCategory.id'))
+    category_id = db.Column(db.Integer)
     title = db.Column(db.String(250))
     text =  db.Column(db.String(10000))
 

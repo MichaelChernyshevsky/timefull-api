@@ -81,9 +81,9 @@ def _get():
 timer_bp = Blueprint('timer_bp', __name__)
 timer_bp.add_url_rule('/timer/create',view_func=_create, methods=["POST"])
 timer_bp.add_url_rule('/timer/delete',view_func=_delete, methods=["DELETE"])
-# timer_bp.add_url_rule('/timer/edit/stat',view_func=_edit_stat, methods=["PATCH"])
+timer_bp.add_url_rule('/timer/edit/stat',view_func=_edit_stat, methods=["PATCH"])
 timer_bp.add_url_rule('/timer/edit/history',view_func=_edit_history, methods=["PATCH"])
-timer_bp.add_url_rule('/timer/get',view_func=_get, methods=["GET"])
+timer_bp.add_url_rule('/timer/get',view_func=_get, methods=["POST"])
 
 
 

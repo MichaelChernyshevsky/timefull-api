@@ -1,0 +1,47 @@
+tags:
+- User
+parameters:
+  - in: body
+    name: sendResetLinkRequest
+    type: Object
+    schema:
+      $ref: "#/definitions/UserEdit"
+    
+responses:
+  "200":
+    description: ""
+    content:
+      application/json:
+        schema:
+          type: "string"
+  "404":
+    description: ""
+
+definitions:
+  UserEdit:
+    type: object
+    properties:
+      user_id:
+        type: int
+        example: 8
+      name:
+        type: string
+        example: "012345"
+      sex:
+        type: string
+        example: "male"
+      phone:
+        type: string
+        example: "89898123123"
+      age:
+        type: int
+        example: 20
+      name:
+        type: string
+        example: "male"
+      name2:
+        type: string
+        example: "male"
+
+
+

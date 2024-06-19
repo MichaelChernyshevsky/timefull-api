@@ -9,7 +9,7 @@ class Config:
     SWAGGER_UI_DOC_EXPANSION = "list"
     RESTX_MASK_SWAGGER = False
     JSON_SORT_KEYS = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost:6000/postgres'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost:7000/postgres'
 
 class TestingConfig(Config):
     TESTING = True

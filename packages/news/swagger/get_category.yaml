@@ -1,12 +1,12 @@
 tags:
-- News_package
+- Package -> news
+
 # parameters:
-#   - name: user_id
-#     in: path
-#     description: "ID of the user"
+#   - in: body
+#     description: "page number"
 #     schema:
-#       type: string
-#       example: "1"
+#       $ref: "#/definitions/NewsGet"
+
 responses:
   "200":
     description: "A successful response"

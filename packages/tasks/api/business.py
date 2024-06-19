@@ -1,8 +1,8 @@
-from ..models.user import User
+from ..models.task import Task
 from config.extensions import db
 
 
-def create(data):
+def add(data):
     try: 
         if  User.find_by_email(data['email']) == None :
             user = User(
@@ -40,22 +40,11 @@ def edit(data):
                 user.name2 = data['name2']
             
             db.session.commit()
+            print(user.serialize())
         return True
       
     except Exception as e:
         return False
-    
-def getId(data):
-    try: 
-        user = User.find_by_email(data['email'])
-        if(user):
-            if user.password ==data['password']:
-                return {'user_id' : user.id}
-            return 'wrong credentials'
-            
-        return None
-    except Exception as e:
-        return None
     
 def get(data):
     try: 

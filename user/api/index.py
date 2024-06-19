@@ -10,14 +10,10 @@ from .business import *
 
 @swag_from('../swagger/signin.yaml')
 def _signin():
-
     try:
-        # data = createNews(request.get_json())
-        print(request.get_json())
-
         return jsonify(
                 message = None,
-                data = {'news':''},
+                data = getId(request.get_json()),
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -29,8 +25,6 @@ def _signin():
 @swag_from('../swagger/signup.yaml')
 def _signup():
     try:
-        
-        print(User.query.all())
         return jsonify(
                 message = None,
                 data = create(request.get_json()),
@@ -58,13 +52,10 @@ def _edit():
 
 @swag_from('../swagger/get.yaml')
 def _get():
-    try:
-        data = get(request.get_json())
-
-      
+    try:      
         return jsonify(
                 message = None,
-                data = data,
+                data = get(request.get_json()),
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -72,12 +63,13 @@ def _get():
             message = None,
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
+    
 @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
         return jsonify(
                 message = None,
-                data = {'news': delete(request.get_json())},
+                data = {'deleted': delete(request.get_json())},
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -91,7 +83,7 @@ def _add_package():
     try:
         return jsonify(
                 message = None,
-                data = {'news': delete(request.get_json())},
+                data = {'package': delete(request.get_json())},
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -105,7 +97,7 @@ def _delete_package():
     try:
         return jsonify(
                 message = None,
-                data = {'news': delete(request.get_json())},
+                data = {'package': delete(request.get_json())},
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -119,7 +111,7 @@ def _packages():
     try:
         return jsonify(
                 message = None,
-                data = {'news': delete(request.get_json())},
+                data = {'package': delete(request.get_json())},
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))

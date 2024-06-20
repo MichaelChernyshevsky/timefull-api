@@ -1,5 +1,6 @@
 from ..models.user import User
 from config.extensions import db
+from ...packages.model.packages import Packages
 
 
 def create(data):
@@ -9,8 +10,12 @@ def create(data):
                     email= data['email'],
                     password = data['password'],
                 )
-            
             db.session.add(user)
+            db.session.commit()
+            package = Packages( user_id = user.id)
+            db.session.add(package)
+            db.session.commit()
+            user.packages = package.id
             db.session.commit()
             return {'user_id' : user.id}
         return {"user": 'already '}

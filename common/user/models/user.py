@@ -10,6 +10,9 @@ class User(db.Model):
     name = db.Column(db.String(250))
     name2 = db.Column(db.String(250))
     age = db.Column(db.Integer)
+    packages = db.Column(db.Integer)
+
+
     
 
     def serialize(self):
@@ -22,6 +25,8 @@ class User(db.Model):
             'name': self.name,
             'name2': self.name2,
             'age': self.age,
+            'packages': self.packages,
+
         }
     @classmethod
     def find_by_name(cls, name):

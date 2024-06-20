@@ -3,27 +3,24 @@ from config.extensions import db
 
 def add(data):
     try: 
-       pass
+           return True
     except Exception as e:
-        return {
-            "error" : e.GetMessage()
-        }
+        return False
     
 def edit(data):
     try: 
-        pass
-      
+            return True
     except Exception as e:
         return False
     
 def get(data):
     try: 
-        pass
+            return True
     except Exception as e:
-        return None
+        return False
     
 def delete(data):
     try: 
-        pass
+          return True
     except Exception as e:
         return False

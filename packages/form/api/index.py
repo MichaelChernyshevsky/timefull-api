@@ -68,7 +68,7 @@ form_bp = Blueprint('form_bp', __name__)
 form_bp.add_url_rule('/form/add',view_func=_add, methods=["POST"])
 form_bp.add_url_rule('/form/delete',view_func=_delete, methods=["DELETE"])
 form_bp.add_url_rule('/form/edit',view_func=_edit, methods=["PATCH"])
-form_bp.add_url_rule('/form/get',view_func=_get, methods=["GET"])
+form_bp.add_url_rule('/form/get',view_func=_get, methods=["POST"])
 
 
 

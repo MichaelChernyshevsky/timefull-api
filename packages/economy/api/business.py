@@ -5,7 +5,7 @@ from ..models.economy import Economy
 def add(data):
     try: 
         economy = Economy(
-            user_id = data['user_id'],
+            userId = data['userId'],
             income = data['income'],
             count = data['count'],
             date = data['date'],
@@ -23,7 +23,7 @@ def add(data):
 def get(data):
     try: 
         e = []
-        _elements = Economy.find_by_user(data['user_id'])
+        _elements = Economy.find_by_user(data['userId'])
         for element in _elements:
             e.append(element.serialize())
         
@@ -37,7 +37,7 @@ def getStat(data):
     try: 
         spending = 0
         income = 0
-        _elements = Economy.find_by_user(data['user_id'])
+        _elements = Economy.find_by_user(data['userId'])
         for element in _elements:
             if (element.income):
                 income += int(element.count)

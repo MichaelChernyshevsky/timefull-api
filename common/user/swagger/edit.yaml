@@ -21,7 +21,7 @@ definitions:
   UserEdit:
     type: object
     properties:
-      user_id:
+      userId:
         type: int
         example: 8
       name:

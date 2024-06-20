@@ -20,8 +20,8 @@ class Info(db.Model):
         }
    
     @classmethod
-    def find_by_user_id(cls, user_id):
-        return cls.query.get(user_id)
+    def find_by_userId(cls, userId):
+        return cls.query.get(userId)
     @classmethod
     def find_by_id(cls, id):
         return cls.query.get(id)

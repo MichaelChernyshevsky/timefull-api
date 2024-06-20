@@ -25,7 +25,7 @@ class User(db.Model):
             'password': self.password,
             'phone': self.phone,
             'packages': self.packages,
-            'info' : Info.find_by_user_id(self.info).serialize(),
+            'info' : Info.find_by_userId(self.info).serialize(),
             'admin': self.admin,
             'creator': self.creator,
             'subscribed' : self.subscribed,

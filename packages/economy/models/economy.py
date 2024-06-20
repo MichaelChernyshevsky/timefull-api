@@ -2,7 +2,7 @@ from config.extensions import db
 
 class Economy(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.String(250))
+    userId = db.Column(db.String(250))
     income = db.Column(db.Boolean)
     count = db.Column(db.String(1000))
     date = db.Column(db.Integer)
@@ -13,7 +13,7 @@ class Economy(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
+            'userId': self.userId,
             'income': self.income,
             'count': self.count,
             'date': self.date,
@@ -21,8 +21,8 @@ class Economy(db.Model):
             'description': self.description,
         }
     @classmethod
-    def find_by_user(cls, user_id):
-        return cls.query.filter_by(user_id=user_id)
+    def find_by_user(cls, userId):
+        return cls.query.filter_by(userId=userId)
     
     @classmethod
     def find_by_id(cls, id):

@@ -4,42 +4,35 @@ from config.extensions import db
 
 def add(data):
     try: 
-        if  User.find_by_email(data['email']) == None :
-            user = User(
-                    email= data['email'],
-                    password = data['password'],
-                )
-            
-            db.session.add(user)
-            db.session.commit()
-            return {'user_id' : user.id}
-        return {"user": 'already '}
+        task = Task(
+                userId= data['userId'],
+                title = data['title'],
+                description = data['description'],
+                date = data['date'],
+                countOnDay = data['countOnDay'],
+                countOnTask = data['countOnTask'],
+            )
+        db.session.add(task)
+        db.session.commit()
+        return True
     except Exception as e:
-
-        return {
-            "error" : e.GetMessage()
-        }
+        return False
     
 def edit(data):
     try: 
-        print('edit' *100)
-        print(data)
-        user = User.find_by_id(data['user_id'])
-        print(user.serialize())
-        if(user):
-            if ( data['phone']):
-                user.phone = data['phone']
-            if ( data['sex']):
-                user.sex = data['sex']
-            if ( data['age']):
-                user.age = data['age']
-            if ( data['name']):
-                user.name = data['name']
-            if ( data['name2']):
-                user.name2 = data['name2']
-            
+        task = Task.find_by_id(data['taskId'])
+        if(task):
+            if ( data['title']):
+                task.title = data['title']
+            if ( data['description']):
+                task.description = data['description']
+            if ( data['date']):
+                task.date = data['date']
+            if ( data['countOnDay']):
+                task.countOnDay = data['countOnDay']
+            if ( data['countOnTask']):
+                task.countOnTask = data['countOnTask']
             db.session.commit()
-            print(user.serialize())
         return True
       
     except Exception as e:
@@ -49,19 +42,17 @@ def edit(data):
     
 def get(data):
     try: 
-        user = User.find_by_email(data['email'])
-        if(user):
-            if user.password ==data['password']:
-                return user.serialize()
-            return 'wrong credentials'
-            
-        return False
+        tasks = []
+        elements = Task.find_by_userId(data['userId'])
+        for elenemt in elements:
+            tasks.append(elenemt.serialize())
+        return tasks
     except Exception as e:
         return False
     
 def delete(data):
     try: 
-        User.query.filter_by(id=data['user_id']).delete()
+        Task.query.filter_by(id=data['taskId']).delete()
         db.session.commit()
         return True
       

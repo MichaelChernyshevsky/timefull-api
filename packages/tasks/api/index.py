@@ -68,7 +68,7 @@ task_bp = Blueprint('task_bp', __name__)
 task_bp.add_url_rule('/task/add',view_func=_add, methods=["POST"])
 task_bp.add_url_rule('/task/delete',view_func=_delete, methods=["DELETE"])
 task_bp.add_url_rule('/task/edit',view_func=_edit, methods=["PATCH"])
-task_bp.add_url_rule('/task/get',view_func=_get, methods=["GET"])
+task_bp.add_url_rule('/task/get',view_func=_get, methods=["POST"])
 
 
 

@@ -16,7 +16,7 @@ def create(data):
             db.session.add(user)
             db.session.commit()
             # package
-            package = Packages( user_id = user.id)
+            package = Packages( userId = user.id)
             db.session.add(package)
             db.session.commit()
             user.packages = package.id
@@ -28,7 +28,7 @@ def create(data):
             user.info = info.id
             db.session.commit()
 
-            return {'user_id' : user.id}
+            return {'userId' : user.id}
         return {"user": 'already '}
     except Exception as e:
         
@@ -38,12 +38,12 @@ def create(data):
     
 def edit(data):
     try: 
-        user = User.find_by_id(data['user_id'])
+        user = User.find_by_id(data['userId'])
         if(user):
             if ( data['phone']):
                 user.phone = data['phone']
             if ( data['sex'] or  data['age'] or data['name'] or data['name2']):
-                info = Info.find_by_user_id(data['user_id'])
+                info = Info.find_by_userId(data['userId'])
                 if ( data['sex']):
                     info.sex = data['sex']
                 if ( data['age']):
@@ -65,7 +65,7 @@ def getId(data):
         user = User.find_by_email(data['email'])
         if(user):
             if user.password ==data['password']:
-                return {'user_id' : user.id}
+                return {'userId' : user.id}
             return 'wrong credentials'
             
         return False
@@ -86,8 +86,7 @@ def get(data):
     
 def getById(data):
     try: 
-        print('1')
-        user = User.find_by_id(data['user_id'])
+        user = User.find_by_id(data['userId'])
         if(user):
             return user.serialize()
             
@@ -99,7 +98,7 @@ def getById(data):
 
 def delete(data):
     try: 
-        User.query.filter_by(id=data['user_id']).delete()
+        User.query.filter_by(id=data['userId']).delete()
         db.session.commit()
         return True
       

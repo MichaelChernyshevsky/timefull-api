@@ -3,7 +3,7 @@ from ..model.packages import Packages
 
 def add(data):
     try: 
-        packages = Packages.find_by_user(data['user_id'])
+        packages = Packages.find_by_user(data['userId'])
         db.session.commit()
         return True
 
@@ -16,10 +16,7 @@ def add(data):
 
 def get(data):
     try: 
-        print(data['user_id'])
-
-        package = Packages.find_by_user(data['user_id'])
-        print(package)
+        package = Packages.find_by_user(data['userId'])
         return package.serialize()
     except Exception as e:
         return False
@@ -28,7 +25,7 @@ def get(data):
     
 def delete(data):
     try: 
-        packages = Packages.find_by_user(data['user_id'])
+        packages = Packages.find_by_user(data['userId'])
         
         pass
     except Exception as e:

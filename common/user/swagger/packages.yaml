@@ -21,7 +21,7 @@ responses:
 #   Packages:
 #     type: object
 #     properties:
-#        user_id:
+#        userId:
 #         type: string
 #         example: "1111"
 

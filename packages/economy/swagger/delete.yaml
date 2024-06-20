@@ -21,7 +21,7 @@ definitions:
   DeleteEconomy:
     type: object
     properties:
-      user_id:
+      id:
         type: string
         example: "1"
 

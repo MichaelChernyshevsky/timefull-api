@@ -21,7 +21,7 @@ definitions:
   UserGet:
     type: object
     properties:
-      user_id:
+       user_id:
         type: string
         example: "1111"
 

@@ -36,7 +36,7 @@ definitions:
       age:
         type: int
         example: 20
-      name:
+      sex:
         type: string
         example: "male"
       name2:

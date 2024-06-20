@@ -13,6 +13,8 @@ def register_blueprints(app):
     app.register_blueprint(news_bp)
     app.register_blueprint(form_bp)
     app.register_blueprint(timer_bp)
+    app.register_blueprint(economy_bp)
+
 
 
 

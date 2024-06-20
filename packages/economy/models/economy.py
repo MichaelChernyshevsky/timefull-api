@@ -3,7 +3,7 @@ from config.extensions import db
 class Economy(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.String(250))
-    income = db.Column(db.SBoolean)
+    income = db.Column(db.Boolean)
     count = db.Column(db.String(1000))
     date = db.Column(db.Integer)
     title = db.Column(db.String(250))

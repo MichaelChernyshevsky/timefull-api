@@ -5,7 +5,7 @@ from flask import Blueprint, request, jsonify, current_app as app, render_templa
 from http import HTTPStatus
 from flasgger import swag_from
 from .business import *
-from ....packages.list_packages import listPackages
+from ..list_packages import listPackages
 
 
 

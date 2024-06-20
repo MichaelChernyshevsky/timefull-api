@@ -18,16 +18,13 @@ def add(data):
     except Exception as e:
         return False
     
-def edit(data):
-    try: 
-        return True
-    except Exception as e:
-        return False
-    
 def get(data):
     try: 
+        print(data)
         e = []
-        _elements = Economy.find_by_user(data['user_id'])
+        print('1')
+        _elements = Economy.find_by_user('1')
+        print(_elements)
         for element in _elements:
             e.append(element.serialize())
         

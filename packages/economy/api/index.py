@@ -57,7 +57,7 @@ def _stat():
     try:
         return jsonify(
                 message = None,
-                data = get(request.get_json()),
+                data = getStat(request.get_json()),
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))

@@ -20,15 +20,35 @@ def add(data):
     
 def get(data):
     try: 
-        print(data)
         e = []
-        print('1')
-        _elements = Economy.find_by_user('1')
-        print(_elements)
+        _elements = Economy.find_by_user(data['user_id'])
         for element in _elements:
             e.append(element.serialize())
         
         return e
+    except Exception as e:
+        return False
+    
+def getStat(data):
+    try: 
+        spending = 0
+        income = 0
+
+        _elements = Economy.find_by_user(data['user_id'])
+
+        
+        for element in _elements:
+            if (element.income):
+                income += int(element.count)
+            else:
+                spending += int(element.count)
+
+        return {
+            'spending':spending,
+            'income': income,
+            'all' : income - spending
+
+        }
     except Exception as e:
         return False
     

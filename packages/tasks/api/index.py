@@ -64,11 +64,45 @@ def _get():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
 
+@swag_from('../swagger/statInfo.yaml')
+def _statInfo():
+    try:
+        return jsonify(
+                message = None,
+                data = statInfo(request.get_json()),
+            ), HTTPStatus.OK
+    except Exception as e:
+        app.logger.error(str(e))
+        return jsonify(    
+            message = None,
+            data = None,
+        ), HTTPStatus.INTERNAL_SERVER_ERROR
+    
+
+@swag_from('../swagger/statEdit.yaml')
+def _statEdit():
+    try:
+        return jsonify(
+                message = None,
+                data = statEdit(request.get_json()),
+            ), HTTPStatus.OK
+    except Exception as e:
+        app.logger.error(str(e))
+        return jsonify(    
+            message = None,
+            data = None,
+        ), HTTPStatus.INTERNAL_SERVER_ERROR
+    
+
+
 task_bp = Blueprint('task_bp', __name__)
 task_bp.add_url_rule('/task/add',view_func=_add, methods=["POST"])
 task_bp.add_url_rule('/task/delete',view_func=_delete, methods=["DELETE"])
 task_bp.add_url_rule('/task/edit',view_func=_edit, methods=["PATCH"])
 task_bp.add_url_rule('/task/get',view_func=_get, methods=["POST"])
+task_bp.add_url_rule('/task/stat/info',view_func=_statInfo, methods=["POST"])
+task_bp.add_url_rule('/task/stat/edit',view_func=_statEdit, methods=["PATCH"])
+
 
 
 

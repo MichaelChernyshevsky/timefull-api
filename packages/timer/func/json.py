@@ -1,4 +1,4 @@
-from ...func.json import *
+from ...helper.json import *
 
 
 def emptyHistory():

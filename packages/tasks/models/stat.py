@@ -17,8 +17,8 @@ class TaskStat(db.Model):
    
     @classmethod
     def find_by_userId(cls, userId):
-        return cls.query.filter_by(userId=userId)
+        return cls.query.filter_by(userId=userId).first()
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.filter_by(id=id)
+        return cls.query.filter_by(id=id).first()

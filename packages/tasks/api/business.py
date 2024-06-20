@@ -1,5 +1,9 @@
 from ..models.task import Task
+from ..models.stat import TaskStat
+
 from config.extensions import db
+
+
 
 
 def add(data):
@@ -50,6 +54,8 @@ def get(data):
     except Exception as e:
         return False
     
+
+    
 def delete(data):
     try: 
         Task.query.filter_by(id=data['taskId']).delete()
@@ -58,4 +64,54 @@ def delete(data):
       
     except Exception as e:
         return False
+    
+def statCreate(data):
+    try: 
+        stat = TaskStat(
+                userId= data['userId'],
+            )
+        db.session.add(stat)
+        db.session.commit()
+        return True
+    except Exception as e:
+        return False
+    
+def statInfo(data):
+    try: 
+        return TaskStat.find_by_userId(data['userId']).serialize()
+    except Exception as e:
+        return False
+        
+def statEdit(data):
+    try: 
+        stat = TaskStat.find_by_userId(data['userId'])
+        if stat:
+           
+            if stat.countDone:
+                stat.countDone += int(data['countDone'])
+            else:
+                stat.countDone = int(data['countDone'])
+            if stat.countUnDone:
+                stat.countUnDone += int(data['countUnDone'])
+            else:
+                stat.countUnDone = int(data['countUnDone'])
+            db.session.commit()
+            return True
+        return False
+    except Exception as e:
+        return False
+
+def statDelete(data):
+    try: 
+        tasks = []
+        elements = Task.find_by_userId(data['userId'])
+        for elenemt in elements:
+            tasks.append(elenemt.serialize())
+        Task.query.filter_by(id=data['taskId']).delete()
+
+        return True
+    except Exception as e:
+        return False
+    
+
         

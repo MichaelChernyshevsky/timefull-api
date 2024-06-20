@@ -26,6 +26,8 @@ def create(data):
             return True
     except Exception as e:
         return False
+
+        
     
 def editStat(data):
     try: 
@@ -38,6 +40,8 @@ def editStat(data):
       
     except Exception as e:
         return False
+
+        
     
 def editHistory(data):
     try: 
@@ -50,6 +54,8 @@ def editHistory(data):
       
     except Exception as e:
         return False
+
+        
 def get(data,serialize):
     try: 
         if contain(data) == False:
@@ -59,7 +65,7 @@ def get(data,serialize):
             return data.serialize()
         return data
     except Exception as e:
-        return None
+        return False
     
 def delete(data):
     try: 
@@ -71,3 +77,5 @@ def delete(data):
         return True
     except Exception as e:
         return False
+
+        

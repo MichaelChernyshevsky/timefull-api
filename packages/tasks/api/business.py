@@ -15,7 +15,6 @@ def add(data):
             return {'user_id' : user.id}
         return {"user": 'already '}
     except Exception as e:
-        print('e')
 
         return {
             "error" : e.GetMessage()
@@ -45,6 +44,8 @@ def edit(data):
       
     except Exception as e:
         return False
+
+        
     
 def get(data):
     try: 
@@ -54,9 +55,9 @@ def get(data):
                 return user.serialize()
             return 'wrong credentials'
             
-        return None
+        return False
     except Exception as e:
-        return None
+        return False
     
 def delete(data):
     try: 
@@ -66,3 +67,4 @@ def delete(data):
       
     except Exception as e:
         return False
+        

@@ -1,54 +1,64 @@
 from ..models.user import User
 from config.extensions import db
 from ...packages.model.packages import Packages
+from ..models.info import Info
+
 
 
 def create(data):
     try: 
         if  User.find_by_email(data['email']) == None :
+            # user
             user = User(
                     email= data['email'],
                     password = data['password'],
                 )
             db.session.add(user)
             db.session.commit()
+            # package
             package = Packages( user_id = user.id)
             db.session.add(package)
             db.session.commit()
             user.packages = package.id
             db.session.commit()
+             # info
+            info = Info(userId = user.id)
+            db.session.add(info)
+            db.session.commit()
+            user.info = info.id
+            db.session.commit()
+
             return {'user_id' : user.id}
         return {"user": 'already '}
     except Exception as e:
-        print('e')
-
+        
         return {
             "error" : e.GetMessage()
         }
     
 def edit(data):
     try: 
-        print('edit' *100)
-        print(data)
         user = User.find_by_id(data['user_id'])
-        print(user.serialize())
         if(user):
             if ( data['phone']):
                 user.phone = data['phone']
-            if ( data['sex']):
-                user.sex = data['sex']
-            if ( data['age']):
-                user.age = data['age']
-            if ( data['name']):
-                user.name = data['name']
-            if ( data['name2']):
-                user.name2 = data['name2']
+            if ( data['sex'] or  data['age'] or data['name'] or data['name2']):
+                info = Info.find_by_user_id(data['user_id'])
+                if ( data['sex']):
+                    info.sex = data['sex']
+                if ( data['age']):
+                    info.age = data['age']
+                if ( data['name']):
+                    info.name = data['name']
+                if ( data['name2']):
+                    info.name2 = data['name2']
             
             db.session.commit()
         return True
-      
+    
     except Exception as e:
         return False
+        
     
 def getId(data):
     try: 
@@ -58,9 +68,9 @@ def getId(data):
                 return {'user_id' : user.id}
             return 'wrong credentials'
             
-        return None
+        return False
     except Exception as e:
-        return None
+        return False
     
 def get(data):
     try: 
@@ -70,10 +80,23 @@ def get(data):
                 return user.serialize()
             return 'wrong credentials'
             
-        return None
+        return False
     except Exception as e:
-        return None
+        return False
     
+def getById(data):
+    try: 
+        print('1')
+        user = User.find_by_id(data['user_id'])
+        if(user):
+            return user.serialize()
+            
+        return False
+    except Exception as e:
+        return False
+    
+
+
 def delete(data):
     try: 
         User.query.filter_by(id=data['user_id']).delete()

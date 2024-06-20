@@ -64,6 +64,20 @@ def _get():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
     
+
+@swag_from('../swagger/getById.yaml')
+def _getById():
+    try:      
+        return jsonify(
+                message = None,
+                data = getById(request.get_json()),
+            ), HTTPStatus.OK
+    except Exception as e:
+        app.logger.error(str(e))
+        return jsonify(    
+            message = None,
+            data = None,
+        ), HTTPStatus.INTERNAL_SERVER_ERROR
 @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
@@ -128,8 +142,8 @@ user_bp.add_url_rule('/user/delete',view_func=_delete, methods=["DELETE"])
 user_bp.add_url_rule('/user/package/add',view_func=_add_package, methods=["PATCH"])
 user_bp.add_url_rule('/user/package/delete',view_func=_delete_package, methods=["DELETE"])
 user_bp.add_url_rule('/user/package/info',view_func=_packages, methods=["POST"])
-
 user_bp.add_url_rule('/user',view_func=_get, methods=["POST"])
+user_bp.add_url_rule('/user/info',view_func=_getById, methods=["POST"])
 
 
 

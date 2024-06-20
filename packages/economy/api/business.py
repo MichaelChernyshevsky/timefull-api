@@ -17,6 +17,8 @@ def add(data):
         return True
     except Exception as e:
         return False
+
+        
     
 def get(data):
     try: 
@@ -28,15 +30,14 @@ def get(data):
         return e
     except Exception as e:
         return False
+
+        
     
 def getStat(data):
     try: 
         spending = 0
         income = 0
-
         _elements = Economy.find_by_user(data['user_id'])
-
-        
         for element in _elements:
             if (element.income):
                 income += int(element.count)
@@ -51,6 +52,8 @@ def getStat(data):
         }
     except Exception as e:
         return False
+
+        
     
 def delete(data):
     try: 
@@ -59,3 +62,5 @@ def delete(data):
         return True
     except Exception as e:
         return False
+
+        

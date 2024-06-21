@@ -23,13 +23,13 @@ definitions:
     properties:
       userId:
         type: string
-        example: "1"
+        example: "24"
       countDone:
         type: string
-        example: "1"
+        example: "24"
       countUnDone:
         type: string
-        example: "1"
+        example: "24"
 
 
 

@@ -69,7 +69,7 @@ def _get():
     try:
         return jsonify(
                 message = None,
-                data = get(data=request.get_json(),serialize=True),
+                data = get(data=request.get_json()),
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))

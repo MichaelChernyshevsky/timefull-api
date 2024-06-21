@@ -23,10 +23,10 @@ definitions:
     properties:
       email:
         type: string
-        example: "example@email.com"
+        example: "admin@server.com"
       password:
         type: string
-        example: "012345"
+        example: "Test12345"
 
 
 

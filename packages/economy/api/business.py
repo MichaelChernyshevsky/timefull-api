@@ -33,7 +33,7 @@ def get(data):
 
         
     
-def getStat(data):
+def statInfoEconomy(data):
     try: 
         spending = 0
         income = 0

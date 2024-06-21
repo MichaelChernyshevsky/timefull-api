@@ -11,9 +11,10 @@ from .business import *
 @swag_from('../swagger/signin.yaml')
 def _signin():
     try:
+        data,message = getId(request.get_json())
         return jsonify(
-                message = None,
-                data = getId(request.get_json()),
+                message = message,
+                data = data,
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -25,9 +26,10 @@ def _signin():
 @swag_from('../swagger/signup.yaml')
 def _signup():
     try:
+        data,message = create(request.get_json())
         return jsonify(
-                message = None,
-                data = create(request.get_json()),
+                message = message,
+                data = data,
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -39,9 +41,10 @@ def _signup():
 @swag_from('../swagger/edit.yaml')
 def _edit():
     try:
+        data,message = edit(request.get_json())
         return jsonify(
-                message = None,
-                data = edit(request.get_json()),
+                 message = message,
+                data = data,
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -50,27 +53,19 @@ def _edit():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
 
-@swag_from('../swagger/get.yaml')
-def _get():
-    try:      
-        return jsonify(
-                message = None,
-                data = get(request.get_json()),
-            ), HTTPStatus.OK
-    except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+
     
 
 @swag_from('../swagger/getById.yaml')
 def _getById():
-    try:      
+    try:     
+        print('-'*100) 
+        data,message =  getById(request.get_json())
+        print(data,message)
+
         return jsonify(
-                message = None,
-                data = getById(request.get_json()),
+                 message = message,
+                data = data,
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -81,9 +76,10 @@ def _getById():
 @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
+        data,message = delete(request.get_json())
         return jsonify(
-                message = None,
-                data = {'deleted': delete(request.get_json())},
+                 message = message,
+                data =  data,
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -95,9 +91,10 @@ def _delete():
 @swag_from('../swagger/addPackage.yaml')
 def _add_package():
     try:
+        data,message = delete(request.get_json())
         return jsonify(
-                message = None,
-                data = {'package': delete(request.get_json())},
+                 message = message,
+                data =  data,
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -109,9 +106,10 @@ def _add_package():
 @swag_from('../swagger/deletePackage.yaml')
 def _delete_package():
     try:
+        data,message = delete(request.get_json())
         return jsonify(
-                message = None,
-                data = {'package': delete(request.get_json())},
+                 message = message,
+                data = data,
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -123,9 +121,10 @@ def _delete_package():
 @swag_from('../swagger/packages.yaml')
 def _packages():
     try:
+        data,message = delete(request.get_json())
         return jsonify(
-                message = None,
-                data = {'package': delete(request.get_json())},
+                message = message,
+                data =  data,
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))
@@ -134,6 +133,21 @@ def _packages():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
 
+@swag_from('../swagger/stat.yaml')
+def _stat():
+    try:
+        data,message = stat(request.get_json())
+        return jsonify(
+                message = message,
+                data =  data,
+            ), HTTPStatus.OK
+    except Exception as e:
+        app.logger.error(str(e))
+        return jsonify(    
+            message = None,
+            data = None,
+        ), HTTPStatus.INTERNAL_SERVER_ERROR
+    
 user_bp = Blueprint('user_bp', __name__)
 user_bp.add_url_rule('/signin',view_func=_signin, methods=["POST"])
 user_bp.add_url_rule('/signup',view_func=_signup, methods=["POST"])
@@ -142,8 +156,8 @@ user_bp.add_url_rule('/user/delete',view_func=_delete, methods=["DELETE"])
 user_bp.add_url_rule('/user/package/add',view_func=_add_package, methods=["PATCH"])
 user_bp.add_url_rule('/user/package/delete',view_func=_delete_package, methods=["DELETE"])
 user_bp.add_url_rule('/user/package/info',view_func=_packages, methods=["POST"])
-user_bp.add_url_rule('/user',view_func=_get, methods=["POST"])
 user_bp.add_url_rule('/user/info',view_func=_getById, methods=["POST"])
+user_bp.add_url_rule('/user/stat',view_func=_getById, methods=["POST"])
 
 
 

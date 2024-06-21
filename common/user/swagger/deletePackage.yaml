@@ -23,7 +23,7 @@ definitions:
     properties:
       package_id:
         type: string
-        example: "1"
+        example: "24"
 
 
 

@@ -1,9 +1,7 @@
 from config.extensions import db
 from ..models.timer import Timer
 from ..func.json import *
-
-def contain(data):
-    return  Timer.find_by_user(data['userId']) != None 
+from ...helper.json import *
 
 def create(data):
     try:
@@ -14,7 +12,6 @@ def create(data):
             )
             db.session.add(data)
             db.session.commit()
-
             return True
     except Exception as e:
         return False
@@ -23,8 +20,6 @@ def create(data):
     
 def editStat(data):
     try: 
-        if contain(data) == False:
-            create(data)
         timer = Timer.find_by_user(data['userId'])
         timer.stat = editStatFunc(data=timer.stat,timeWork=data['timeWork'],timeRelax=data['timeRelax'])
         db.session.commit()
@@ -37,8 +32,6 @@ def editStat(data):
     
 def editHistory(data):
     try: 
-        if contain(data) == False:
-            create(data)
         timer = Timer.find_by_user(data['userId'])
         timer.history = editHistoryFunc(data=timer.history,work=data['work'],relax=data['relax'])
         db.session.commit()
@@ -48,24 +41,24 @@ def editHistory(data):
         return False
 
         
-def get(data,serialize):
+def get(data):
     try: 
-        if contain(data) == False:
-            create(data)
-        data = Timer.find_by_user(data['userId'])
-        if serialize :
-            return data.serialize()
-        return data
+        return Timer.find_by_user(data['userId']).serialize()
     except Exception as e:
         return False
     
+def statInfoTimer(data):
+    try: 
+        return fromStringToJson(Timer.find_by_user(data['userId']).history)
+    except Exception as e:
+        return False
+
+    
+    
 def delete(data):
     try: 
-        if contain(data) == False:
-            return True
         db.session.delete(Timer.find_by_user(data['userId']))
         db.session.commit()
-
         return True
     except Exception as e:
         return False

@@ -76,7 +76,7 @@ def statCreate(data):
     except Exception as e:
         return False
     
-def statInfo(data):
+def statInfoTask(data):
     try: 
         return TaskStat.find_by_userId(data['userId']).serialize()
     except Exception as e:

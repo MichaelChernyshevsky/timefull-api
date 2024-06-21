@@ -13,18 +13,13 @@ class User(db.Model):
     subscribed = db.Column(db.Boolean)
 
 
-
-
-
-    
-
     def serialize(self):
         return {
             'id': self.id,
             'email': self.email,
             'password': self.password,
             'phone': self.phone,
-            'packages': self.packages,
+            'packagesId': self.packages,
             'info' : Info.find_by_userId(self.info).serialize(),
             'admin': self.admin,
             'creator': self.creator,

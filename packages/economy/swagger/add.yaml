@@ -23,7 +23,7 @@ definitions:
     properties:
       userId:
         type: string
-        example: "1"
+        example: "24"
       income:
         type: intÅ
         example: 1
@@ -35,10 +35,10 @@ definitions:
         example: 1
       title:
         type: string
-        example: "1"
+        example: "24"
       description:
         type: string
-        description: "1"
+        description: "24"
 
 
 

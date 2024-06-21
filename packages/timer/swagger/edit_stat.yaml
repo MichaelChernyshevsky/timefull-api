@@ -23,13 +23,13 @@ definitions:
     properties:
       userId:
         type: string
-        example: "1"
+        example: "24"
       timeWork:
         type: string
-        example: "1"
+        example: "24"
       timeRelax:
         type: string
-        example: "1"
+        example: "24"
 
 
 

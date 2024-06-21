@@ -69,7 +69,7 @@ def _statInfo():
     try:
         return jsonify(
                 message = None,
-                data = statInfo(request.get_json()),
+                data = statInfoTask(request.get_json()),
             ), HTTPStatus.OK
     except Exception as e:
         app.logger.error(str(e))

@@ -5,7 +5,7 @@ def add(data):
     try: 
         packages = Packages.find_by_user(data['userId'])
         db.session.commit()
-        return True
+        return {},
 
 
     except Exception as e:

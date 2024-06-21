@@ -20,7 +20,7 @@ class User(db.Model):
             'password': self.password,
             'phone': self.phone,
             'packagesId': self.packages,
-            'info' : Info.find_by_userId(self.info).serialize(),
+            'info' : Info.find_by_id(self.info).serialize(),
             'admin': self.admin,
             'creator': self.creator,
             'subscribed' : self.subscribed,
@@ -36,4 +36,4 @@ class User(db.Model):
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.get(id)
+        return cls.query.filter_by(id = id).first()

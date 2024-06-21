@@ -1,8 +1,7 @@
 from flasgger import Swagger
 
 from packages.exports import *
-from common.user.api.index import user_bp
-from common.packages.api.index import packages_bp
+
 
 
 def register_blueprints(app):

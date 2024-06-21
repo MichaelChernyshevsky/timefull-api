@@ -23,7 +23,7 @@ definitions:
     properties:
       userId:
         type: string
-        example: "22"
+        example: "24"
 
 
 

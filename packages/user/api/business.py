@@ -1,11 +1,9 @@
 from config.extensions import db
-from ...packages.model.packages import Packages
 from ..models import *
 
 # stat
-from packages import *
-
-
+from ...packages.model.packages import Packages
+from ...common.func.status import *
 def create(data):
     try: 
         if  User.find_by_email(data['email']) == None :
@@ -30,7 +28,7 @@ def create(data):
             db.session.commit()
 
             return {'userId' : user.id},'success'
-        return False, 'unsuccess'
+        return {}, 'unsuccess'
     except Exception as e:
         
         return {
@@ -38,37 +36,29 @@ def create(data):
         },'unsuccess'
     
 def edit(data):
-    # try: 
+    try: 
         user = User.find_by_id(data['userId'])
-        print(data)
         if(user):
-            print(1)
             if ( data['phone']):
-                print('p')
-                
                 user.phone = data['phone']
             if ( data['sex'] or  data['age'] or data['name'] or data['name2']):
-                print('2')
                 info = Info.find_by_userId(data['userId'])
-                print(info.serialize())
-                if ( data['sex']):
-                    print(data['sex'])
-                    info.sex = data['sex']
-                # if ( data['age'] != 0):
-                #     print(type(data['age']))
-                #     info.age = data['age']
-            #     if ( data['name']):
-            #         print('n')
-
-            #         info.name = data['name']
-            #     if ( data['name2']):
-            #         print('n2')
-            #         info.name2 = data['name2']
-            db.session.commit()
-        return {} ,'success'
-    
-    # except Exception as e:
-    #     return {} , "unsuccess"
+                if (info):
+                    if ( data['sex']):
+                        info.sex =  data['sex']
+                    if ( data['age'] != 0):
+                        info.age =  data['age']
+                    if ( data['name']):
+                        info.name =  data['name']
+                    if ( data['name2']):
+                        info.name2 =  data['name2']
+                    db.session.commit()
+                
+            return {} ,'success'
+        
+        return {} ,'unsuccess'
+    except Exception as e:
+        return {} , "unsuccess"
         
     
 def getId(data):
@@ -78,23 +68,23 @@ def getId(data):
             if user.password ==data['password']:
                 return {'userId' : user.id},'success'
             
-            return False, 'wrong credentials'
+            return {}, 'wrong credentials'
             
-        return False , "unsuccess" 
+        return {} , "unsuccess" 
     except Exception as e:
-        return False , "unsuccess"
+        return {} , "unsuccess"
     
 
     
-def getById(data):
+def info(data):
     try: 
         user = User.find_by_id(data['userId'])
         if(user):
             return user.serialize() , "success"
             
-        return False , "unsuccess"
+        return {} , "unsuccess"
     except Exception as e:
-        return False , "unsuccess"
+        return {} , "unsuccess"
     
 
 
@@ -102,27 +92,27 @@ def delete(data):
     try: 
         User.query.filter_by(id=data['userId']).delete()
         db.session.commit()
-        return True ,'success'
+        return {} ,'success'
       
     except Exception as e:
-        return False , "unsuccess"
+        return {} , "unsuccess"
     
 def stat(data):
     try: 
         stat = {"timer":"","economy":"","tasks":""}
         packages = Packages.find_by_id(data['userId'])
-        if packages:
-            if packages.timer:
-                stat["timer"] = statInfoTimer(data)
-            if packages.tasks:
-                stat["economy"] = statInfoEconomy(data)
-            if packages.economy:
-                stat["tasks"] = statInfoTask(data)
-            return stat ,'success'
+        # if packages:
+        #     if packages.timer:
+        #         stat["timer"] = statInfoTimer(data)
+        #     if packages.tasks:
+        #         stat["economy"] = statInfoEconomy(data)
+        #     if packages.economy:
+        #         stat["tasks"] = statInfoTask(data)
+        #     return stat ,'success'
 
-        return False , "unsuccess"
+        return {} , "unsuccess"
       
     except Exception as e:
-        return False , "unsuccess"
+        return {} , "unsuccess"
 
     

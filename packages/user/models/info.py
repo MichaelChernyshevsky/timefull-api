@@ -21,7 +21,7 @@ class Info(db.Model):
    
     @classmethod
     def find_by_userId(cls, userId):
-        return cls.query.get(userId)
+        return cls.query.filter_by(userId=userId).first()
     @classmethod
     def find_by_id(cls, id):
         return cls.query.get(id)

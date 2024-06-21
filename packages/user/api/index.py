@@ -56,11 +56,11 @@ def _edit():
 
     
 
-@swag_from('../swagger/getById.yaml')
-def _getById():
+@swag_from('../swagger/info.yaml')
+def _info():
     try:     
         print('-'*100) 
-        data,message =  getById(request.get_json())
+        data,message = info(request.get_json())
         print(data,message)
 
         return jsonify(
@@ -156,8 +156,8 @@ user_bp.add_url_rule('/user/delete',view_func=_delete, methods=["DELETE"])
 user_bp.add_url_rule('/user/package/add',view_func=_add_package, methods=["PATCH"])
 user_bp.add_url_rule('/user/package/delete',view_func=_delete_package, methods=["DELETE"])
 user_bp.add_url_rule('/user/package/info',view_func=_packages, methods=["POST"])
-user_bp.add_url_rule('/user/info',view_func=_getById, methods=["POST"])
-user_bp.add_url_rule('/user/stat',view_func=_getById, methods=["POST"])
+user_bp.add_url_rule('/user/info',view_func=_info, methods=["POST"])
+user_bp.add_url_rule('/user/stat',view_func=_info, methods=["POST"])
 
 
 

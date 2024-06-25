@@ -1,11 +1,11 @@
 tags:
-- Package -> timer
+- Packages
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/AddTime"
+      $ref: "#/definitions/InfoPackages"
     
 responses:
   "200":
@@ -17,14 +17,10 @@ responses:
   "404":
     description: ""
 
-definitions:
-  AddTime:
-    type: object
-    properties:
-      userId:
-        type: string
-        example: "24"
 
+
+definitions:
+  InfoPackages:
 
 
 

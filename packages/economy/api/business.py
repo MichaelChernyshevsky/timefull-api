@@ -4,6 +4,8 @@ from ..models.economy import Economy
 
 def add(data):
     try: 
+        print('-'*100)
+        print(data['title'])
         economy = Economy(
             userId = data['userId'],
             income = data['income'],
@@ -12,11 +14,12 @@ def add(data):
             title = data['title'],
             description = data['description'],
         )
-        db.session.add(economy)
+        print('-'*100)
+        db.session.add(economy)        
         db.session.commit()
-        return True
+        return {},'success'
     except Exception as e:
-        return False
+        return {},'unsuccess'
 
         
     
@@ -27,9 +30,9 @@ def get(data):
         for element in _elements:
             e.append(element.serialize())
         
-        return e
+        return {'data':e},'success'
     except Exception as e:
-        return False
+        return {},'unsuccess'
 
         
     
@@ -48,19 +51,18 @@ def statInfoEconomy(data):
             'spending':spending,
             'income': income,
             'all' : income - spending
-
-        }
+        },'success'
     except Exception as e:
-        return False
+        return {},'unsuccess'
 
         
     
-def delete(data):
+def deleteEconomy(data):
     try: 
         Economy.query.filter_by(id=data['id']).delete()
         db.session.commit()
-        return True
+        return {},'success'
     except Exception as e:
-        return False
+        return {},'unsuccess'
 
         

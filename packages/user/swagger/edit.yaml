@@ -22,8 +22,8 @@ definitions:
     type: object
     properties:
       userId:
-        type: int
-        example: 8
+        type: string
+        example: "26"
       name:
         type: string
         example: "Admin"

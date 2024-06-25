@@ -5,93 +5,99 @@ from flask import Blueprint, request, jsonify, current_app as app, render_templa
 from http import HTTPStatus
 from flasgger import swag_from
 from .business import *
+from packages.tools.response import *
+from packages.packages.api.business import checkPakage
 
 
 
 @swag_from('../swagger/add.yaml')
 def _add():
     try:
-        return jsonify(
-                message = None,
-                data = add(request.get_json()),
-            ), HTTPStatus.OK
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = add(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+    
+
+        
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
     
 @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
-        return jsonify(
-                message = None,
-                data = delete(request.get_json()),
-            ), HTTPStatus.OK
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = deleteTasks(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+        
+        
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+       return ERROR(e)
     
 @swag_from('../swagger/edit.yaml')
 def _edit():
     try:
-        return jsonify(
-                message = None,
-                data = edit(request.get_json()),
-            ), HTTPStatus.OK
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = edit(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+        
+       
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
 
 @swag_from('../swagger/get.yaml')
 def _get():
     try:
-        return jsonify(
-                message = None,
-                data = get(request.get_json()),
-            ), HTTPStatus.OK
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = get(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+        
+        
+        
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
 
 @swag_from('../swagger/statInfo.yaml')
 def _statInfo():
     try:
-        return jsonify(
-                message = None,
-                data = statInfoTask(request.get_json()),
-            ), HTTPStatus.OK
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = statInfoTask(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+    
+        
+        
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
     
 
 @swag_from('../swagger/statEdit.yaml')
 def _statEdit():
     try:
-        return jsonify(
-                message = None,
-                data = statEdit(request.get_json()),
-            ), HTTPStatus.OK
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = statEdit(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+        
+        
+        
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
     
 
 

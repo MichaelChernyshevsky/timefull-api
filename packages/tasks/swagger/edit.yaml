@@ -23,16 +23,16 @@ definitions:
     properties:
       taskId:
         type: string
-        example: "24"
+        example: "26"
       title:
         type: string
-        example: "24"
+        example: "26"
       description:
         type: string
-        example: "24"
+        example: "26"
       date:
         type: string
-        example: "24"
+        example: "26"
       countOnDay:
         type: int
         example: 1

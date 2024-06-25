@@ -21,9 +21,12 @@ definitions:
   DeleteEconomy:
     type: object
     properties:
+      userId:
+        type: string
+        example: "26"
       id:
         type: string
-        example: "24"
+        example: "26"
 
 
 

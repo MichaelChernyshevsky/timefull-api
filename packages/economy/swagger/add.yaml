@@ -23,9 +23,9 @@ definitions:
     properties:
       userId:
         type: string
-        example: "24"
+        example: "26"
       income:
-        type: intÅ
+        type: int
         example: 1
       count:
         type: int
@@ -35,7 +35,7 @@ definitions:
         example: 1
       title:
         type: string
-        example: "24"
+        example: "26"
       description:
         type: string
         description: "24"

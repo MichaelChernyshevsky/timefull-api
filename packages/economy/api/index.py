@@ -5,66 +5,69 @@ from flask import Blueprint, request, jsonify, current_app as app, render_templa
 from http import HTTPStatus
 from flasgger import swag_from
 from .business import *
+from packages.tools.response import *
+from packages.packages.api.business import checkPakage
 
 
 
 @swag_from('../swagger/add.yaml')
 def _add():
     try:
-        return jsonify(
-                message = None,
-                data = add(request.get_json()),
-            ), HTTPStatus.OK
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = add(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+    
+
+        
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
     
 @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
-        return jsonify(
-                message = None,
-                data = delete(request.get_json()),
-            ), HTTPStatus.OK
-    except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = deleteEconomy(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
     
+        
+    except Exception as e:
+        return ERROR(e)
 
 
 @swag_from('../swagger/get.yaml')
 def _get():
-    try:
-        return jsonify(
-                message = None,
-                data = get(request.get_json()),
-            ), HTTPStatus.OK
+    try: 
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = get(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+    
+        
+       
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+       return ERROR(e)
 
 @swag_from('../swagger/stat.yaml')
 def _stat():
     try:
-        return jsonify(
-                message = None,
-                data = statInfoEconomy(request.get_json()),
-            ), HTTPStatus.OK
+        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        if (cont):
+            data,message = statInfoEconomy(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+    
+        
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
     
 economy_bp = Blueprint('economy_bp', __name__)
 economy_bp.add_url_rule('/economy/add',view_func=_add, methods=["POST"])

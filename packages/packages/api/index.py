@@ -7,72 +7,42 @@ from flasgger import swag_from
 from .business import *
 from ..list_packages import listPackages
 
+from packages.tools.response import *
 
 
-@swag_from('../swagger/add.yaml')
-def _add():
+
+
+@swag_from('../swagger/change.yaml')
+def _change():
     try:
-        return jsonify(
-                message = None,
-                data = add(request.get_json()),
-            ), HTTPStatus.OK
+        data,message = changeState(request.get_json())
+        return response(data=data,message=message)
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
     
-@swag_from('../swagger/delete.yaml')
-def _delete():
-    try:
-        return jsonify(
-                message = None,
-                data = delete(request.get_json()),
-            ), HTTPStatus.OK
-    except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
-    
-
 
 @swag_from('../swagger/get.yaml')
 def _get():
     try:
-        return jsonify(
-                message = None,
-                data = get(request.get_json()),
-            ), HTTPStatus.OK
+        data,message = get(request.get_json())
+        return response(data=data,message=message)
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
+        return ERROR(e)
     
-@swag_from('../swagger/list.yaml')
-def _list():
+@swag_from('../swagger/info.yaml')
+def _info():
     try:
-        return jsonify(
-                message = None,
-                data = listPackages(),
-            ), HTTPStatus.OK
+        data,message = listPackages(),'success'
+        return response(data=data,message=message)
     except Exception as e:
-        app.logger.error(str(e))
-        return jsonify(    
-            message = None,
-            data = None,
-        ), HTTPStatus.INTERNAL_SERVER_ERROR
-
+        return ERROR(e)
 
 packages_bp = Blueprint('packages_bp', __name__)
-packages_bp.add_url_rule('/packages/add',view_func=_add, methods=["POST"])
-packages_bp.add_url_rule('/packages/delete',view_func=_delete, methods=["DELETE"])
+packages_bp.add_url_rule('/packages/change',view_func=_change, methods=["POST"])
 packages_bp.add_url_rule('/packages/get',view_func=_get, methods=["POST"])
-packages_bp.add_url_rule('/packages/list',view_func=_list, methods=["POST"])
+packages_bp.add_url_rule('/packages/info',view_func=_info, methods=["POST"])
+
+
 
 
 

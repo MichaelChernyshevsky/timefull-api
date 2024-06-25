@@ -3,7 +3,56 @@ from ..models.timer import Timer
 from ..func.json import *
 from ...helper.json import *
 
-def create(data):
+
+        
+    
+def editStat(data):
+    try: 
+        timer = Timer.find_by_user(data['userId'])
+        timer.stat = editStatFunc(data=timer.stat,timeWork=data['timeWork'],timeRelax=data['timeRelax'])
+        db.session.commit()
+        return {},'success'
+    except Exception as e:
+        return {},'unsuccess'
+
+        
+    
+def editHistory(data):
+    try: 
+        timer = Timer.find_by_user(data['userId'])
+        timer.history = editHistoryFunc(data=timer.history,work=data['work'],relax=data['relax'])
+        db.session.commit()
+        return {},'success'
+      
+    except Exception as e:
+        return {},'unsuccess'
+
+        
+def get(data):
+    try: 
+        print(data)
+        return Timer.find_by_user(data['userId']).serialize(),'success'
+    except Exception as e:
+        return {},'unsuccess'
+    
+def statInfoTimer(data):
+    try: 
+        return fromStringToJson(Timer.find_by_user(data['userId']).history),'success'
+    except Exception as e:
+        return {},'unsuccess'
+
+    
+    
+def deleteTimer(data):
+    try: 
+        db.session.delete(Timer.find_by_user(data['userId']))
+        db.session.commit()
+        return True
+    except Exception as e:
+        return False
+
+        
+def createTimer(data):
     try:
             data = Timer(
                 userId = data['userId'],
@@ -15,52 +64,3 @@ def create(data):
             return True
     except Exception as e:
         return False
-
-        
-    
-def editStat(data):
-    try: 
-        timer = Timer.find_by_user(data['userId'])
-        timer.stat = editStatFunc(data=timer.stat,timeWork=data['timeWork'],timeRelax=data['timeRelax'])
-        db.session.commit()
-        return True
-      
-    except Exception as e:
-        return False
-
-        
-    
-def editHistory(data):
-    try: 
-        timer = Timer.find_by_user(data['userId'])
-        timer.history = editHistoryFunc(data=timer.history,work=data['work'],relax=data['relax'])
-        db.session.commit()
-        return True
-      
-    except Exception as e:
-        return False
-
-        
-def get(data):
-    try: 
-        return Timer.find_by_user(data['userId']).serialize()
-    except Exception as e:
-        return False
-    
-def statInfoTimer(data):
-    try: 
-        return fromStringToJson(Timer.find_by_user(data['userId']).history)
-    except Exception as e:
-        return False
-
-    
-    
-def delete(data):
-    try: 
-        db.session.delete(Timer.find_by_user(data['userId']))
-        db.session.commit()
-        return True
-    except Exception as e:
-        return False
-
-        

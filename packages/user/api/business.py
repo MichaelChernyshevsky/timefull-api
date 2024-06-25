@@ -3,7 +3,7 @@ from ..models import *
 
 # stat
 from ...packages.model.packages import Packages
-from ...common.response import *
+
 def create(data):
     try: 
         if  User.find_by_email(data['email']) == None :
@@ -20,13 +20,12 @@ def create(data):
             db.session.commit()
             user.packages = package.id
             db.session.commit()
-             # info
+            # info
             info = Info(userId = user.id)
             db.session.add(info)
             db.session.commit()
             user.info = info.id
             db.session.commit()
-
             return {'userId' : user.id},'success'
         return {}, 
     except Exception as e:

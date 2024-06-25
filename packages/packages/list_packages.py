@@ -1,7 +1,17 @@
 
 
 def listPackages():
-    return [
-        'timer',
-        'economy',
-    ]
+    return {
+        'timer' : {
+            "title" : "",
+            "description" : "",
+        },
+        'economy' :  {
+            "title" : "",
+            "description" : "",
+        },
+        'tasks' : {
+            "title" : "",
+            "description" : "",
+        },
+    }

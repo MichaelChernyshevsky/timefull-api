@@ -23,7 +23,10 @@ definitions:
     properties:
       userId:
         type: string
-        example: "24"
+        example: "26"
+      package:
+        type: string
+        example: "timer"
 
 
 

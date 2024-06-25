@@ -1,4 +1,5 @@
 from config.extensions import db
+from ..func.json import fromStringToJson
 
 class Timer(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -12,8 +13,8 @@ class Timer(db.Model):
         return {
             'id': self.id,
             'userId': self.userId,
-            'history': self.history,
-            'stat': self.stat,
+            'history': fromStringToJson(self.history),
+            'stat':fromStringToJson(self.stat),
         }
     @classmethod
     def find_by_user(cls, userId):

@@ -41,8 +41,9 @@ def _info():
         data,message = info(request.get_json())
         return response(data=data,message=message)
     except Exception as e:
-        
         return ERROR(e)
+    
+
 @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
@@ -50,7 +51,6 @@ def _delete():
         return response(data=data,message=message)
     except Exception as e:
         return ERROR(e)
-
 
 
 @swag_from('../swagger/stat.yaml')

@@ -8,7 +8,7 @@ from .business import *
 
 
 
-@swag_from('../swagger/signin.yaml')
+# # @swag_from('../swagger/signin.yaml')
 def _signin():
     try:
         return jsonify(
@@ -22,7 +22,7 @@ def _signin():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
     
-@swag_from('../swagger/signup.yaml')
+# # @swag_from('../swagger/signup.yaml')
 def _signup():
     try:
         return jsonify(
@@ -36,7 +36,7 @@ def _signup():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
     
-@swag_from('../swagger/edit.yaml')
+# # @swag_from('../swagger/edit.yaml')
 def _edit():
     try:
         return jsonify(
@@ -50,7 +50,7 @@ def _edit():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
 
-@swag_from('../swagger/get.yaml')
+# # @swag_from('../swagger/get.yaml')
 def _get():
     try:      
         return jsonify(
@@ -64,7 +64,7 @@ def _get():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
     
-@swag_from('../swagger/delete.yaml')
+# # @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
         return jsonify(
@@ -78,7 +78,7 @@ def _delete():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
 
-@swag_from('../swagger/addPackage.yaml')
+# # @swag_from('../swagger/addPackage.yaml')
 def _add_package():
     try:
         return jsonify(
@@ -92,7 +92,7 @@ def _add_package():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
     
-@swag_from('../swagger/deletePackage.yaml')
+# # @swag_from('../swagger/deletePackage.yaml')
 def _delete_package():
     try:
         return jsonify(
@@ -106,7 +106,7 @@ def _delete_package():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
 
-@swag_from('../swagger/packages.yaml')
+# # @swag_from('../swagger/packages.yaml')
 def _packages():
     try:
         return jsonify(

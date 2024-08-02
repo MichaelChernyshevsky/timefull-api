@@ -1,26 +1,18 @@
-import json
+from  ...tools.helper.json import *
 
-def fromStringToJson(data):
-    return json.loads(data)
-
-def fromJsonToString(data):
-    return json.dumps(data)
 
 def emptyHistory():
     return '{"work":0,"relax":0}'
 
 def emptyStat():
-    return '{"timeWork":0,"timeStat":0}'
+    return '{"timeWork":0,"timeRelax":0}'
 
 def editStatFunc(data,timeWork,timeRelax):
-    print(data)
     json = fromStringToJson(data=data)
-    print(json)
-    json["timeWork"] += int(timeWork)
-    print(json)
-    
-    json["timeStat"] += int(timeRelax)
-    print(json)
+    if (timeWork):
+        json["timeWork"] += int(timeWork)
+    if(timeRelax):
+        json["timeRelax"] += int(timeRelax)
 
     return fromJsonToString(json)
 

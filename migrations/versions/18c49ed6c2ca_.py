@@ -37,7 +37,7 @@ def upgrade():
     )
     op.create_table('timer',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('user_id', sa.String(length=250), nullable=True),
+    sa.Column('userId', sa.String(length=250), nullable=True),
     sa.Column('history', sa.String(length=1000), nullable=True),
     sa.Column('stat', sa.String(length=1000), nullable=True),
     sa.PrimaryKeyConstraint('id')

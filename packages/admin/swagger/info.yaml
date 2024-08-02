@@ -1,0 +1,22 @@
+tags:
+- Main -> Admin
+parameters:
+  - in: body
+    name: sendResetLinkRequest
+    type: Object
+    schema:
+      $ref: "#/definitions/AdminInfo"
+    
+
+
+definitions:
+  AdminInfo:
+    type: object
+    properties:
+      userId:
+        type: string
+        example: "26"
+
+
+
+

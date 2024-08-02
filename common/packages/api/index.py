@@ -8,7 +8,7 @@ from .business import *
 
 
 
-@swag_from('../swagger/add.yaml')
+# # @swag_from('../swagger/add.yaml')
 def _add():
     try:
         return jsonify(
@@ -22,7 +22,7 @@ def _add():
             data = None,
         ), HTTPStatus.INTERNAL_SERVER_ERROR
     
-@swag_from('../swagger/delete.yaml')
+# # @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
         return jsonify(
@@ -38,7 +38,7 @@ def _delete():
     
 
 
-@swag_from('../swagger/get.yaml')
+# # @swag_from('../swagger/get.yaml')
 def _get():
     try:
         return jsonify(

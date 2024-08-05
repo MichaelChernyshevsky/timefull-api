@@ -5,7 +5,7 @@ class Packages(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userId = db.Column(db.String(250))
     timer = db.Column(db.Boolean)
-    task = db.Column(db.Boolean)
+    tasks = db.Column(db.Boolean)
     economy = db.Column(db.Boolean)
     
 
@@ -14,9 +14,9 @@ class Packages(db.Model):
             'id': self.id,
             'userId': self.userId,
             'timer': self.timer,
-            'task': self.task,
+            'tasks': self.tasks,
             'economy': self.economy,
-            'note':  self.economy,
+            'note':  False,
         
         }
     @classmethod

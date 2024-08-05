@@ -21,9 +21,9 @@ definitions:
   GetTime:
     type: object
     properties:
-      user_id:
+      userId:
         type: string
-        example: "1"
+        example: "26"
 
 
 

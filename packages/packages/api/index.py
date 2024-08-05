@@ -12,7 +12,7 @@ from packages.tools.response import *
 
 
 
-# # @swag_from('../swagger/change.yaml')
+@swag_from('../swagger/change.yaml')
 def _change():
     try:
         data,message = changeState(request.get_json())
@@ -21,15 +21,16 @@ def _change():
         return ERROR(e)
     
 
-# # @swag_from('../swagger/get.yaml')
+@swag_from('../swagger/get.yaml')
 def _get():
     try:
+        
         data,message = get(request.get_json())
         return response(data=data,message=message)
     except Exception as e:
         return ERROR(e)
     
-# # @swag_from('../swagger/info.yaml')
+@swag_from('../swagger/info.yaml')
 def _info():
     try:
         data,message = listPackages(),'success'

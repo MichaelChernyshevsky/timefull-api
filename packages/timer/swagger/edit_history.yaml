@@ -21,9 +21,9 @@ definitions:
   EditTimeHistory:
     type: object
     properties:
-      user_id:
+      userId:
         type: string
-        example: "1"
+        example: "26"
       work:
         type: string
         example: "1"

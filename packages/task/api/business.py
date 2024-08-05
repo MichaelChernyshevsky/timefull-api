@@ -27,7 +27,9 @@ def add(data):
     
 def edit(data):
     try: 
-        task = Task.find_by_id(data['taskId'])
+        print(data['taskId'])
+        task = Task.find_by_id(id=data['taskId']).first()
+
         if(task):
             if ( data['title']):
                 task.title = data['title']
@@ -40,6 +42,7 @@ def edit(data):
             if ( data['countOnTask']):
                 task.countOnTask = data['countOnTask']
             db.session.commit()
+
         return {},'success'
       
     except Exception as e:
@@ -55,7 +58,7 @@ def get(data):
 
         for elenemt in elements:
             tasks.append(elenemt.serialize())
-        
+        print(tasks)
         return {'data':tasks},'success'
     except Exception as e:
         return {},'unsuccess'
@@ -63,7 +66,7 @@ def get(data):
     
 
     
-def deleteTasks(data):
+def deleteTask(data):
     try: 
         Task.query.filter_by(id=data['taskId']).delete()
         db.session.commit()

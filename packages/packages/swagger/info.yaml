@@ -1,11 +1,11 @@
 tags:
-- User
+- Main -> Packages
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/Packages"
+      $ref: "#/definitions/InfoPackage"
     
 responses:
   "200":
@@ -17,13 +17,13 @@ responses:
   "404":
     description: ""
 
-# definitions:
-#   Packages:
-#     type: object
-#     properties:
-#       user_id:
-#         type: string
-#         example: "1111"
+definitions:
+  InfoPackage:
+    type: object
+    properties:
+      userId:
+        type: string
+        example: "26"
 
 
 

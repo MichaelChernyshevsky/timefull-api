@@ -6,14 +6,14 @@ from http import HTTPStatus
 from flasgger import swag_from
 from .business import *
 from packages.tools.response import *
-from packages.packages.api.business import checkPakage
+from packages.packages.api.business import checkPackage
 
 
 
 # # @swag_from('../swagger/add.yaml')
 def _add():
     try:
-        cont,message1 = checkPakage('economy',request.get_json()['userId'])
+        cont,message1 = checkPackage('economy',request.get_json()['userId'])
         if (cont):
             data,message = add(request.get_json())
             return response(data=data,message=message)
@@ -30,7 +30,7 @@ def _delete():
     try:
         print(1)
 
-        cont,message1 = checkPakage('economy',request.get_json()['userId'])
+        cont,message1 = checkPackage('economy',request.get_json()['userId'])
         if (cont):
             data,message = deleteEconomy(request.get_json())
             return response(data=data,message=message)
@@ -45,7 +45,7 @@ def _delete():
 # # @swag_from('../swagger/get.yaml')
 def _get():
     try: 
-        cont,message1 = checkPakage('economy',request.get_json()['userId'])
+        cont,message1 = checkPackage('economy',request.get_json()['userId'])
 
         if (cont):
             data,message = get(request.get_json())
@@ -63,7 +63,7 @@ def _get():
 # # @swag_from('../swagger/stat.yaml')
 def _stat():
     try:
-        cont,message1 = checkPakage('economy',request.get_json()['userId'])
+        cont,message1 = checkPackage('economy',request.get_json()['userId'])
         if (cont):
             data,message = statInfoEconomy(request.get_json())
             return response(data=data,message=message)

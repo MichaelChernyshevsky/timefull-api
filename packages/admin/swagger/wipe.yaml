@@ -24,10 +24,21 @@ definitions:
   AdminInfo:
     type: object
     properties:
-      userId:
-        type: string
-        example: "26"
-
+      user:
+        type: bool
+        example: false
+      economy:
+        type: bool
+        example: false
+      timer:
+        type: bool
+        example: false
+      task:
+        type: bool
+        example: false
+      task:
+        type: all
+        example: false
 
 
 

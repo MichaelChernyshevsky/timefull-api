@@ -1,5 +1,5 @@
 tags:
-- User
+- Main -> User
 parameters:
   - in: body
     name: sendResetLinkRequest
@@ -21,7 +21,7 @@ definitions:
   UserGet:
     type: object
     properties:
-      user_id:
+      userId:
         type: string
         example: "1111"
 

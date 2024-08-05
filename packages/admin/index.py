@@ -5,7 +5,7 @@ from flasgger import swag_from
 
 
 
-# # # @swag_from('../swagger/info.yaml')
+@swag_from('./swagger/info.yaml')
 def _info():
     try:
         data,message = info(request.get_json())
@@ -15,4 +15,4 @@ def _info():
     
 
 admin_bp = Blueprint('admin_bp', __name__)
-admin_bp.add_url_rule('/info',view_func=_info, methods=["POST"])
+admin_bp.add_url_rule('/admin/info',view_func=_info, methods=["POST"])

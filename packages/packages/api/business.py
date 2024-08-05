@@ -2,8 +2,9 @@ from config.extensions import db
 from ..model.packages import Packages
 
 
-def checkPakage(package,userId):
+def checkPackage(package,userId):
     try: 
+
         packages = Packages.find_by_user(userId)
         match package:
             case 'timer':
@@ -14,6 +15,7 @@ def checkPakage(package,userId):
                 return packages.economy,'success'
         return False,'error name'
     except Exception as e:
+        print(e)
         return False,'error'
     
 def changeState(data):
@@ -23,29 +25,28 @@ def changeState(data):
             case 'timer':
                 if (packages.timer):
                     from packages.timer.api.business import deleteTimer
-                    deleteTimer(data)
+                    # deleteTimer(data)
                 else:
                     from packages.timer.api.business import createTimer
                     createTimer(data)
                 packages.timer = not packages.timer 
             case 'task':
-                if (packages.task):
+                if (packages.tasks):
                     from packages.task.api.business import deleteTask
-                    deleteTask(data)
-                packages.task = not packages.task 
+                    # deleteTask(data)
+                packages.tasks = not packages.tasks
             case 'economy':
                 if (packages.economy):
                     from packages.economy.api.business import deleteEconomy
-                    deleteEconomy(data)
+                    # deleteEconomy(data)
                 packages.economy = not packages.economy 
-        print(3)
-
         db.session.commit()
         return {},'success'
 
 
     except Exception as e:
-        
+        print(1)
+        print(e)
         return {
             'error':e
         },'unsuccess'
@@ -55,9 +56,14 @@ def changeState(data):
 
 def get(data):
     try:
+        print(1)
+
         package = Packages.find_by_user(data['userId'])
+        print(1)
+
         return package.serialize(),'success'
     except Exception as e:
+        print(e)
         return {},'unsuccess'
 
         

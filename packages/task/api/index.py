@@ -6,14 +6,14 @@ from http import HTTPStatus
 from flasgger import swag_from
 from .business import *
 from packages.tools.response import *
-from packages.packages.api.business import checkPakage
+from packages.packages.api.business import checkPackage
 
 
 
-# # @swag_from('../swagger/add.yaml')
+@swag_from('../swagger/add.yaml')
 def _add():
     try:
-        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        cont,message1 = checkPackage('task',request.get_json()['userId'])
         if (cont):
             data,message = add(request.get_json())
             return response(data=data,message=message)
@@ -25,10 +25,10 @@ def _add():
     except Exception as e:
         return ERROR(e)
     
-# # @swag_from('../swagger/delete.yaml')
+@swag_from('../swagger/delete.yaml')
 def _delete():
     try:
-        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        cont,message1 = checkPackage('task',request.get_json()['userId'])
         if (cont):
             data,message = deleteTasks(request.get_json())
             return response(data=data,message=message)
@@ -39,10 +39,10 @@ def _delete():
     except Exception as e:
        return ERROR(e)
     
-# # @swag_from('../swagger/edit.yaml')
+@swag_from('../swagger/edit.yaml')
 def _edit():
     try:
-        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        cont,message1 = checkPackage('task',request.get_json()['userId'])
         if (cont):
             data,message = edit(request.get_json())
             return response(data=data,message=message)
@@ -53,10 +53,11 @@ def _edit():
     except Exception as e:
         return ERROR(e)
 
-# # @swag_from('../swagger/get.yaml')
+@swag_from('../swagger/get.yaml')
 def _get():
     try:
-        cont,message1 = checkPakage('task',request.get_json()['userId'])
+
+        cont,message1 = checkPackage('task',request.get_json()['userId'])
         if (cont):
             data,message = get(request.get_json())
             return response(data=data,message=message)
@@ -68,10 +69,10 @@ def _get():
     except Exception as e:
         return ERROR(e)
 
-# # @swag_from('../swagger/statInfo.yaml')
+# @swag_from('../swagger/statInfo.yaml')
 def _statInfo():
     try:
-        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        cont,message1 = checkPackage('task',request.get_json()['userId'])
         if (cont):
             data,message = statInfoTask(request.get_json())
             return response(data=data,message=message)
@@ -84,10 +85,10 @@ def _statInfo():
         return ERROR(e)
     
 
-# # @swag_from('../swagger/statEdit.yaml')
+# @swag_from('../swagger/statEdit.yaml')
 def _statEdit():
     try:
-        cont,message1 = checkPakage('task',request.get_json()['userId'])
+        cont,message1 = checkPackage('task',request.get_json()['userId'])
         if (cont):
             data,message = statEdit(request.get_json())
             return response(data=data,message=message)

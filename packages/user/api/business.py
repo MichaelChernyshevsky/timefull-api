@@ -14,35 +14,47 @@ def create(data):
                 )
             db.session.add(user)
             db.session.commit()
-            # package
-            package = Packages( userId = user.id)
-            db.session.add(package)
-            db.session.commit()
-            user.packages = package.id
-            db.session.commit()
+          
+
             # info
             info = Info(userId = user.id)
             db.session.add(info)
             db.session.commit()
             user.info = info.id
             db.session.commit()
+            # # package
+            package = Packages( userId = user.id)
+            db.session.add(package)
+            db.session.commit()
+            user.packages = package.id
+            db.session.commit()
+
             return {'userId' : user.id},'success'
-        return {}, 
+        return {}, 'success'
     except Exception as e:
-        
+        print(e)
         return {
-            "error" : e.GetMessage()
+           
         },'unsuccess'
     
 def edit(data):
     try: 
         user = User.find_by_id(data['userId'])
+        print(1)
         if(user):
+            print(2)
+
             if ( data['phone']):
+                print(3)
+
                 user.phone = data['phone']
-            if ( data['admin']):
-                user.admin =  data['admin']
+            # if ( data['admin']):
+            #     print(4)
+                
+            #     user.admin =  data['admin']
             if ( data['sex'] or  data['age'] or data['name'] or data['name2']):
+                print(5)
+                
                 info = Info.find_by_userId(data['userId'])
                 if (info):
                     if ( data['sex']):
@@ -60,7 +72,6 @@ def edit(data):
         
         return {} ,'unsuccess'
     except Exception as e:
-        print(e)
         return {} , "unsuccess"
         
     
@@ -84,9 +95,9 @@ def info(data):
         user = User.find_by_id(data['userId'])
         if(user):
             return user.serialize() , "success"
-            
         return {} , "unsuccess"
     except Exception as e:
+        print(e)
         return {} , "unsuccess"
     
 

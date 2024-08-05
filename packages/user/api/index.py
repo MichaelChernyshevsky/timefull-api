@@ -22,6 +22,8 @@ def _signup():
         data,message = create(request.get_json())
         return response(data=data,message=message)
     except Exception as e:
+        print(e)
+
         return ERROR(e)
     
 @swag_from('../swagger/edit.yaml')
@@ -40,6 +42,7 @@ def _info():
         data,message = info(request.get_json())
         return response(data=data,message=message)
     except Exception as e:
+        
         return ERROR(e)
     
 
@@ -52,13 +55,6 @@ def _delete():
         return ERROR(e)
 
 
-# @swag_from('../swagger/stat.yaml')
-def _stat():
-    try:
-        data,message = stat(request.get_json())
-        return response(data=data,message=message)
-    except Exception as e:
-        return ERROR(e)
     
 user_bp = Blueprint('user_bp', __name__)
 user_bp.add_url_rule('/signin',view_func=_signin, methods=["POST"])
@@ -66,7 +62,6 @@ user_bp.add_url_rule('/signup',view_func=_signup, methods=["POST"])
 user_bp.add_url_rule('/user/edit',view_func=_edit, methods=["PATCH"])
 user_bp.add_url_rule('/user/delete',view_func=_delete, methods=["DELETE"])
 user_bp.add_url_rule('/user/info',view_func=_info, methods=["POST"])
-user_bp.add_url_rule('/user/stat',view_func=_info, methods=["POST"])
 
 
 

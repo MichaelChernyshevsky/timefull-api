@@ -1,11 +1,11 @@
 tags:
-- User
+- Main -> Packages
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/DeletePackage"
+      $ref: "#/definitions/AddPackage"
     
 responses:
   "200":
@@ -18,12 +18,16 @@ responses:
     description: ""
 
 definitions:
-  DeletePackage:
+  AddPackage:
     type: object
     properties:
-      package_id:
+      userId:
         type: string
-        example: "1"
+        example: "26"
+      package: 
+        type: string
+        example: "timer"
+      
 
 
 

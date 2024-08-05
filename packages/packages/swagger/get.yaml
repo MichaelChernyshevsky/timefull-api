@@ -1,5 +1,5 @@
 tags:
-- Packages
+- Main -> Packages
 parameters:
   - in: body
     name: sendResetLinkRequest
@@ -21,9 +21,9 @@ definitions:
   GetPackage:
     type: object
     properties:
-      user_id:
+      userId:
         type: string
-        example: "1"
+        example: "26"
 
 
 

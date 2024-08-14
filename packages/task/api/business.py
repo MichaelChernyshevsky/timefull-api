@@ -22,14 +22,14 @@ def add(data):
 
         return {},'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
     
 def edit(data):
     try: 
-        print(data['taskId'])
         task = Task.find_by_id(id=data['taskId']).first()
-
         if(task):
             if ( data['title']):
                 task.title = data['title']
@@ -46,11 +46,11 @@ def edit(data):
         return {},'success'
       
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
 
-        
-    
 def get(data):
     try: 
         tasks = []
@@ -61,9 +61,11 @@ def get(data):
         print(tasks)
         return {'data':tasks},'success'
     except Exception as e:
-        return {},'unsuccess'
-
-    
+        
+        print(e)
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
     
 def deleteTask(data):
@@ -73,7 +75,9 @@ def deleteTask(data):
         return {},'success'
       
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
 def createTasks(data):
     try: 
@@ -82,7 +86,9 @@ def createTasks(data):
         return {},'success'
       
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
     
 def statCreate(data):
     try: 
@@ -93,42 +99,43 @@ def statCreate(data):
         db.session.commit()
         return {},'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
     
 def statInfoTask(data):
     try: 
         return TaskStat.find_by_userId(data['userId']).serialize(),'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
 
         
 def statEdit(data):
     try: 
-        print(1)
         stat = TaskStat.find_by_userId(data['userId'])
         if stat:
-            print(1)
-            
             if stat.countDone:
                 stat.countDone += int(data['countDone'])
             else:
                 stat.countDone = int(data['countDone'])
-            print(2)
-
             if stat.countUnDone:
                 stat.countUnDone += int(data['countUnDone'])
             else:
                 stat.countUnDone = int(data['countUnDone'])
-            print(2)
-            
             db.session.commit()
             return {},'success'
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
 
 def statDelete(data):
@@ -138,10 +145,11 @@ def statDelete(data):
         for elenemt in elements:
             tasks.append(elenemt.serialize())
         Task.query.filter_by(id=data['taskId']).delete()
-
         return {},'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
     
 

@@ -15,6 +15,8 @@ def response(data,message):
 def ERROR (e):
     app.logger.error(str(e))
     return jsonify(    
-                message = {},
+                message = {
+                    "error":str(e)
+                },
                 data = {},
             ), HTTPStatus.INTERNAL_SERVER_ERROR

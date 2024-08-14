@@ -16,7 +16,9 @@ def add(data):
         db.session.commit()
         return {},'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
         
     
@@ -51,7 +53,9 @@ def statInfoEconomy(data):
             'all' : income - spending
         },'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
         
     
@@ -61,6 +65,8 @@ def deleteEconomy(data):
         db.session.commit()
         return {},'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
         

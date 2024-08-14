@@ -32,29 +32,17 @@ def create(data):
             return {'userId' : user.id},'success'
         return {}, 'success'
     except Exception as e:
-        print(e)
-        return {
-           
-        },'unsuccess'
+        return {},'unsuccess'
     
 def edit(data):
     try: 
         user = User.find_by_id(data['userId'])
-        print(1)
         if(user):
-            print(2)
-
             if ( data['phone']):
-                print(3)
-
                 user.phone = data['phone']
             # if ( data['admin']):
-            #     print(4)
-                
             #     user.admin =  data['admin']
             if ( data['sex'] or  data['age'] or data['name'] or data['name2']):
-                print(5)
-                
                 info = Info.find_by_userId(data['userId'])
                 if (info):
                     if ( data['sex']):
@@ -67,9 +55,7 @@ def edit(data):
                         info.name2 =  data['name2']
                     
                     db.session.commit()
-                
             return {} ,'success'
-        
         return {} ,'unsuccess'
     except Exception as e:
         return {} , "unsuccess"

@@ -24,7 +24,6 @@ def _change():
 @swag_from('../swagger/get.yaml')
 def _get():
     try:
-        
         data,message = get(request.get_json())
         return response(data=data,message=message)
     except Exception as e:

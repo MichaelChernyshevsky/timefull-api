@@ -14,4 +14,8 @@ def listPackages():
             "title" : "",
             "description" : "",
         },
+        'sport' : {
+            "title" : "",
+            "description" : "",
+        },
     }

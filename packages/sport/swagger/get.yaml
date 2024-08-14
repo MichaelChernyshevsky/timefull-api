@@ -1,11 +1,11 @@
 tags:
-- User
+- Package -> Sport
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/DeletePackage"
+      $ref: "#/definitions/GetSport"
     
 responses:
   "200":
@@ -18,12 +18,12 @@ responses:
     description: ""
 
 definitions:
-  DeletePackage:
+  GetSport:
     type: object
     properties:
-      package_id:
+      userId:
         type: string
-        example: "1"
+        example: "26"
 
 
 

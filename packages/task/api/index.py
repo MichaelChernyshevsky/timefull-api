@@ -30,7 +30,7 @@ def _delete():
     try:
         cont,message1 = checkPackage('task',request.get_json()['userId'])
         if (cont):
-            data,message = deleteTasks(request.get_json())
+            data,message = deleteTask(request.get_json())
             return response(data=data,message=message)
         else:
             return response(data={},message=message1)
@@ -56,12 +56,13 @@ def _edit():
 @swag_from('../swagger/get.yaml')
 def _get():
     try:
-
         cont,message1 = checkPackage('task',request.get_json()['userId'])
         if (cont):
+
             data,message = get(request.get_json())
             return response(data=data,message=message)
         else:
+            
             return response(data={},message=message1)
         
         

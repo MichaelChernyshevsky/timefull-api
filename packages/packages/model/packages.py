@@ -7,6 +7,9 @@ class Packages(db.Model):
     timer = db.Column(db.Boolean)
     tasks = db.Column(db.Boolean)
     economy = db.Column(db.Boolean)
+    sport = db.Column(db.Boolean)
+    note = db.Column(db.Boolean)
+
     
 
     def serialize(self):
@@ -16,7 +19,9 @@ class Packages(db.Model):
             'timer': self.timer,
             'tasks': self.tasks,
             'economy': self.economy,
-            'note':  False,
+            'sport': self.sport,
+
+            'note':  self.note,
         
         }
     @classmethod

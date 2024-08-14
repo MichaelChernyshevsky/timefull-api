@@ -13,7 +13,9 @@ def editStat(data):
         db.session.commit()
         return {},'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
         
     
@@ -25,7 +27,9 @@ def editHistory(data):
         return {},'success'
       
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
         
 def get(data):
@@ -33,13 +37,17 @@ def get(data):
         print(data)
         return Timer.find_by_user(data['userId']).serialize(),'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
     
 def statInfoTimer(data):
     try: 
         return fromStringToJson(Timer.find_by_user(data['userId']).history),'success'
     except Exception as e:
-        return {},'unsuccess'
+        return {
+            'Error':str(e)
+        },'unsuccess'
 
     
     

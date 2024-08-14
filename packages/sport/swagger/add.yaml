@@ -1,11 +1,11 @@
 tags:
-- Packages
+- Package -> Sport
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/GetPackage"
+      $ref: "#/definitions/AddSport"
     
 responses:
   "200":
@@ -18,12 +18,21 @@ responses:
     description: ""
 
 definitions:
-  GetPackage:
+  AddSport:
     type: object
     properties:
-      user_id:
+      userId:
         type: string
-        example: "1"
+        example: "26"
+      title:
+        type: string
+        example: "Run"
+      distant:
+        type: int
+        example: 5
+      date:
+        type: string
+        example: "102392131"
 
 
 

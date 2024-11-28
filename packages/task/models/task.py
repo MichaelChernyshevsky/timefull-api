@@ -1,5 +1,6 @@
 from config.extensions import db
 from .stat import TaskStat
+from sqlalchemy import cast, Integer
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -21,6 +22,12 @@ class Task(db.Model):
             'countOnTask': self.countOnTask,
         }
    
+    @classmethod
+    def find_by_userId_filtered(cls, userId,dateFrom, dateTo, page, countOnPage):
+        query =  cls.query.filter_by(userId=userId).filter(cls.date >= str(dateFrom), cls.date <= str(dateTo))
+        paginated_results = query.paginate(page=page, per_page=countOnPage, error_out=False)
+        return paginated_results.items
+    
     @classmethod
     def find_by_userId(cls, userId):
         return cls.query.filter_by(userId=userId)

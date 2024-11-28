@@ -24,10 +24,8 @@ def add(data):
     
 def get(data):
     try: 
-      
-
         e = []
-        _elements = Economy.find_by_user(data['userId'])
+        _elements = Economy.find_by_userId_filtered(data['userId'],dateFrom=data['dateFrom'],dateTo=data['dateTo'],page=data['page'],countOnPage=data['countOnPage'])
         for element in _elements:
             e.append(element.serialize())
         return {'data':e},'success'
@@ -46,7 +44,6 @@ def statInfoEconomy(data):
                 income += int(element.count)
             else:
                 spending += int(element.count)
-
         return {
             'spending':spending,
             'income': income,

@@ -24,6 +24,18 @@ definitions:
       userId:
         type: string
         example: "26"
+      dateFrom:
+        type: int
+        example: 0
+      dateTo:
+        type: int
+        example: 5000000000
+      page:
+        type: int
+        example: 1
+      countOnPage:
+        type: int
+        example: 30
 
 
 

@@ -19,9 +19,17 @@ class Sport(db.Model):
         }
    
     @classmethod
-    def find_by_userId(cls, userId):
-        return cls.query.filter_by(userId=userId).all()
-
+    def find_by_userId_filtered(cls, userId,dateFrom, dateTo, page, countOnPage):
+        query = cls.query.filter_by(userId=userId).filter(cls.date >= str(dateFrom), cls.date <= str(dateTo))
+        paginated_results = query.paginate(page=page, per_page=countOnPage, error_out=False)
+        return paginated_results.items
+    
     @classmethod
-    def find_by_id(cls, id):
-        return cls.query.filter_by(id=id)
+    def find_by_userId(cls, userId):
+        return cls.query.filter_by(userId=userId)
+    
+    @classmethod
+    def find_by_id(cls, id,dateFrom, dateTo, page, countOnPage):
+        query = cls.query.filter_by(id=id).filter(cls.date >= dateFrom, cls.date <= dateTo)
+        paginated_results = query.paginate(page=page, per_page=countOnPage, error_out=False)
+        return paginated_results.items

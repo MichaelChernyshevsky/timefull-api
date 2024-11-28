@@ -6,7 +6,7 @@ from http import HTTPStatus
 from flasgger import swag_from
 from .business import *
 from packages.tools.response import *
-from packages.packages.api.business import checkPackage
+from packages.packages.api.chack import checkPackage
 
 
 @swag_from('../swagger/edit_stat.yaml')

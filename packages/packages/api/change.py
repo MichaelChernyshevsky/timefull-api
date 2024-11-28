@@ -1,26 +1,14 @@
-from config.extensions import db
-from ..model.packages import Packages
+from .bp import packages_bp  
+
+from flask import Blueprint, request, jsonify, current_app as app, render_template
+from http import HTTPStatus
+from flasgger import swag_from
+from .chack import *
+from ..list_packages import listPackages
+
+from packages.tools.response import *
 
 
-def checkPackage(package,userId):
-    try: 
-
-        packages = Packages.find_by_user(userId)
-        match package:
-            case 'timer':
-                return packages.timer,'success'
-            case 'task':
-                return packages.tasks,'success'
-            case 'economy':
-                return packages.economy,'success'
-            case 'note':
-                return packages.note,'success'
-            case 'sport':
-                return packages.sport,'success'
-        return False,'error name'
-    except Exception as e:
-        return False,'Error is:' +str(e)
-    
 def changeState(data):
     try: 
         packages = Packages.find_by_user(data['userId'])
@@ -62,19 +50,13 @@ def changeState(data):
             'Error':str(e)
         },'unsuccess'
 
-        
-    
 
-def get(data):
+@swag_from('../swagger/change.yaml')
+def _change():
     try:
-        package = Packages.find_by_user(data['userId'])
-        return package.serialize(),'success'
+        data,message = changeState(request.get_json())
+        return response(data=data,message=message)
     except Exception as e:
-        return {
-            'Error':str(e)
-        },'unsuccess'
-
-        
+        return ERROR(e)
     
-
-        
+packages_bp.add_url_rule('/packages/change',view_func=_change, methods=["POST"])

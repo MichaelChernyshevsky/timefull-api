@@ -1,4 +1,5 @@
 from config.extensions import db
+from sqlalchemy import cast, Integer
 
 class Economy(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -23,6 +24,12 @@ class Economy(db.Model):
     @classmethod
     def find_by_user(cls, userId):
         return cls.query.filter_by(userId=userId)
+    
+    @classmethod
+    def find_by_userId_filtered(cls, userId,dateFrom, dateTo, page, countOnPage):
+        query =  cls.query.filter_by(userId=userId).filter(cls.date >= str(dateFrom), cls.date <= str(dateTo))
+        paginated_results = query.paginate(page=page, per_page=countOnPage, error_out=False)
+        return paginated_results.items
     
     @classmethod
     def find_by_id(cls, id):

@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, current_app as app, render_templa
 from flasgger import swag_from
 from .business import *
 from packages.tools.response import *
-from packages.packages.api.business import checkPackage
+from packages.packages.api.chack import checkPackage
 
 @swag_from('../swagger/get.yaml')
 def _get():

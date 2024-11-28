@@ -1,15 +1,11 @@
-from .bp import packages_bp  
 
 from flask import Blueprint, request, jsonify, current_app as app, render_template
-from http import HTTPStatus
 from flasgger import swag_from
 from .chack import *
-from ..list_packages import listPackages
-
 from packages.tools.response import *
 
 
-def changeState(data):
+def _changeState(data):
     try: 
         packages = Packages.find_by_user(data['userId'])
         match data['package']:
@@ -52,11 +48,10 @@ def changeState(data):
 
 
 @swag_from('../swagger/change.yaml')
-def _change():
+def change():
     try:
-        data,message = changeState(request.get_json())
+        data,message = _changeState(request.get_json())
         return response(data=data,message=message)
     except Exception as e:
         return ERROR(e)
     
-packages_bp.add_url_rule('/packages/change',view_func=_change, methods=["POST"])

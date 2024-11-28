@@ -8,7 +8,6 @@ def register_blueprints(app):
     app.register_blueprint(user_bp)
     app.register_blueprint(packages_bp)
     app.register_blueprint(admin_bp)
-
     # packages
     app.register_blueprint(task_bp)
     app.register_blueprint(timer_bp)

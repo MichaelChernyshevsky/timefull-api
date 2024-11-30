@@ -7,6 +7,8 @@ class TeamModel(db.Model):
     title = db.Column(db.String(250))
     description = db.Column(db.String(250))
     columns = db.Column(db.String(250))
+    isActive = db.Column(db.Boolean)
+    
 
 
 
@@ -18,5 +20,11 @@ class TeamModel(db.Model):
             'inviteKey': self.inviteKey,
             'title': self.title,
             'description': self.description,
+            'columns': self.columns,
+            'isActive':self.isActive,
         }
+    
+    @classmethod
+    def find_by_user(cls, userOwnerId):
+        return cls.query.filter_by(userOwnerId=userOwnerId)
    

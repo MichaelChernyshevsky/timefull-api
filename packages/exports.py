@@ -7,3 +7,4 @@ from packages.user.api.index import user_bp
 from packages.admin.index import admin_bp
 from packages.packages.api.bp import packages_bp
 from packages.sport.api.index import sport_bp
+from packages.team.api.bp import team_bp

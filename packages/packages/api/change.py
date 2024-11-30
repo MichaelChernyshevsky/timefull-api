@@ -18,34 +18,21 @@ def _changeState(data):
                     createTimer(data)
                 packages.timer = not packages.timer 
             case 'task':
-                if (packages.tasks):
-                    from packages.task.api.business import deleteTask
-                    # deleteTask(data)
                 packages.tasks = not packages.tasks
+            case 'team':
+                packages.team = not packages.team
             case 'economy':
-                if (packages.economy):
-                    from packages.economy.api.business import deleteEconomy
-                    # deleteEconomy(data)
                 packages.economy = not packages.economy 
             case 'sport':
-                # if (packages.sport):
-                    # from packages.economy.api.business import deleteEconomy
-                    # # deleteEconomy(data)
                 packages.sport = not packages.sport 
             case 'note':
-                # if (packages.economy):
-                #     from packages.economy.api.business import deleteEconomy
-                #     # deleteEconomy(data)
                 packages.note = not packages.note 
         db.session.commit()
         return {},'success'
-
-
     except Exception as e:
         return {
             'Error':str(e)
         },'unsuccess'
-
 
 @swag_from('../swagger/change.yaml')
 def change():

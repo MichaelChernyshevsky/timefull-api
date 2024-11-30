@@ -1,11 +1,11 @@
 tags:
-- Package -> Timer
+- Package -> Team
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/EditTimeHistory"
+      $ref: "#/definitions/Invite"
     
 responses:
   "200":
@@ -18,18 +18,27 @@ responses:
     description: ""
 
 definitions:
-  EditTimeHistory:
+  Invite:
     type: object
     properties:
       userId:
         type: string
         example: "26"
-      work:
+      title:
         type: string
-        example: "1"
-      relax:
+        example: "title"
+      description:
         type: string
-        example: "1"
+        example: "description"
+      date:
+        type: int
+        example: 019231
+      countOnDay:
+        type: int
+        example: 1
+      countOnTask:
+        type: int
+        example: 1
       
 
 

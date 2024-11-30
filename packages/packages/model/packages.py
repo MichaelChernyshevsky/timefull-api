@@ -9,6 +9,8 @@ class Packages(db.Model):
     economy = db.Column(db.Boolean)
     sport = db.Column(db.Boolean)
     note = db.Column(db.Boolean)
+    team = db.Column(db.Boolean)
+
 
     
 
@@ -20,8 +22,9 @@ class Packages(db.Model):
             'tasks': self.tasks,
             'economy': self.economy,
             'sport': self.sport,
-
             'note':  self.note,
+            'team':  self.team,
+
         
         }
     @classmethod

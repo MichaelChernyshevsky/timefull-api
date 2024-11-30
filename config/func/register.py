@@ -1,6 +1,6 @@
 from flasgger import Swagger
 
-from packages.exports import *
+from  modules.exports import *
 
 
 

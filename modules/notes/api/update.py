@@ -5,36 +5,50 @@ from flask import Blueprint, request, jsonify, current_app as app, render_templa
 from flasgger import swag_from
 from modules.tools.response import *
 
-
 def _update(data):
     try:
         added = 0
         updated = 0
+        deleted = 0
+
+        user_id = data['note'][list(data['note'].keys())[0]]['userId']  
+        existing_note_ids = {note.id for note in Note.query.filter_by(userId=user_id).all()}
+
+        passed_note_ids = set()
 
         for key in data['note']:
-            print(data['note'][key])
-            note = Note.find_by_id(int(data['note'][key]['id']),data['note'][key]['userId'])
-            if note != None:
-                note.title = data['note'][key]['title']
-                note.note = data['note'][key]['note']
+            note_data = data['note'][key]
+            note_id = int(note_data['id'])
+            passed_note_ids.add(note_id)
+
+            note = Note.find_by_id(note_id, user_id)
+            if note is not None:
+                note.title = note_data['title']
+                note.note = note_data['note']
                 updated += 1
             else:
-                newNote = Note(
-                    id = int(data['note'][key]['id']),
-                    userId = data['note'][key]['userId'],
-                    title = data['note'][key]['title'],
-                    note = data['note'][key]['note'],
+                new_note = Note(
+                    id=note_id,
+                    userId=user_id,
+                    title=note_data['title'],
+                    note=note_data['note'],
                 )
+                db.session.add(new_note)
                 added += 1
-                db.session.add(newNote)
-            db.session.commit()
-            
 
-        return {'Added':added,'Updated':updated},'success'
+        ids_to_delete = existing_note_ids - passed_note_ids
+        for note_id in ids_to_delete:
+            note_to_delete = Note.find_by_id(note_id, user_id)
+            if note_to_delete:
+                db.session.delete(note_to_delete)
+                deleted += 1
+
+        db.session.commit()
+
+        return {'Added': added, 'Updated': updated, 'Deleted': deleted}, 'success'
     except Exception as e:
-        return {
-            'Error':str(e)
-        },'unsuccess'
+        db.session.rollback()  
+        return {'Error': str(e)}, 'unsuccess'
 
 
 

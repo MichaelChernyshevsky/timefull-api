@@ -18,7 +18,7 @@ def _add():
             data,message = add(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     
 
         
@@ -35,7 +35,7 @@ def _delete():
             data,message = deleteEconomy(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     
         
     except Exception as e:
@@ -53,7 +53,7 @@ def _get():
             return response(data=data,message=message)
         else:
 
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     
         
        
@@ -68,7 +68,7 @@ def _stat():
             data,message = statInfoEconomy(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     
         
     except Exception as e:

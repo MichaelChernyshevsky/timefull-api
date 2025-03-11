@@ -15,7 +15,7 @@ def invite():
                         return ''
 
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
         
         
     except Exception as e:

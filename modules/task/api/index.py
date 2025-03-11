@@ -18,7 +18,7 @@ def _add():
             data,message = add(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     
 
         
@@ -33,7 +33,7 @@ def _delete():
             data,message = deleteTask(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
         
         
     except Exception as e:
@@ -47,7 +47,7 @@ def _edit():
             data,message = edit(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
         
        
     except Exception as e:
@@ -63,7 +63,7 @@ def _get():
             return response(data=data,message=message)
         else:
             
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
         
         
         
@@ -78,7 +78,7 @@ def _statInfo():
             data,message = statInfoTask(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     
         
         
@@ -94,20 +94,19 @@ def _statEdit():
             data,message = statEdit(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
-        
-        
-        
+            return response(data={'state':'not active package'},message=message1)
+ 
     except Exception as e:
         return ERROR(e)
     
 
 
 task_bp = Blueprint('task_bp', __name__)
+task_bp.add_url_rule('/task/get',view_func=_get, methods=["POST"])
+task_bp.add_url_rule('/task/delete',view_func=_delete, methods=["DELETE"])
 task_bp.add_url_rule('/task/add',view_func=_add, methods=["POST"])
 task_bp.add_url_rule('/task/delete',view_func=_delete, methods=["DELETE"])
 task_bp.add_url_rule('/task/edit',view_func=_edit, methods=["PATCH"])
-task_bp.add_url_rule('/task/get',view_func=_get, methods=["POST"])
 task_bp.add_url_rule('/task/stat/info',view_func=_statInfo, methods=["POST"])
 task_bp.add_url_rule('/task/stat/edit',view_func=_statEdit, methods=["PATCH"])
 

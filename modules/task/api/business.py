@@ -53,11 +53,13 @@ def edit(data):
 
 def get(data):
     try: 
-        tasks = []
-        elements = Task.find_by_userId_filtered(data['userId'],dateFrom=data['dateFrom'],dateTo=data['dateTo'],page=data['page'],countOnPage=data['countOnPage'])
-        for elenemt in elements:
-            tasks.append(elenemt.serialize())
-        return {'data':tasks},'success'
+        tasks = {}
+        # elements = Task.find_by_userId_filtered(data['userId'],dateFrom=data['dateFrom'],dateTo=data['dateTo'],page=data['page'],countOnPage=data['countOnPage'])
+        elements = Task.find_by_userId(userId=data['userId'])
+        print(len(elements))
+        # for elenemt in elements:
+        #     tasks[elenemt.id] = elenemt.serialize()
+        return {'tasks':tasks},'success'
     except Exception as e:
         
         print(e)

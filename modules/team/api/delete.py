@@ -28,7 +28,7 @@ def delete():
             db.session.commit()
             return response(data= {},message='success')
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
       
     except Exception as e:
         return ERROR(e)

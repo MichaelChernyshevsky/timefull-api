@@ -9,8 +9,9 @@ from modules.tools.response import *
 def _get(data):
     try:
         note = Note.find_by_id(int(data['id']),data['userId'])
+
         if note != None:
-            return note.serialize(),'success'
+            return {'note' : note.serialize()},'success'
         else:
             return {
             'Can not find'

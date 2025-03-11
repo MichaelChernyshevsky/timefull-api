@@ -12,7 +12,7 @@ def _get():
             data,message = get(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     except Exception as e:
         return ERROR(e)
     
@@ -24,7 +24,7 @@ def _add():
             data,message = add(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     except Exception as e:
         return ERROR(e)
     
@@ -36,7 +36,7 @@ def _save():
             data,message = save(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     except Exception as e:
         return ERROR(e)
 
@@ -48,7 +48,7 @@ def _delete():
             data,message = delete(request.get_json())
             return response(data=data,message=message)
         else:
-            return response(data={},message=message1)
+            return response(data={'state':'not active package'},message=message1)
     except Exception as e:
         return ERROR(e)
     

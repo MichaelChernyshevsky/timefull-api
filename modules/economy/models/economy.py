@@ -2,7 +2,8 @@ from config.extensions import db
 from sqlalchemy import cast, Integer
 
 class Economy(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    
+    id = db.Column(db.BigInteger, primary_key=True )
     userId = db.Column(db.String(250))
     income = db.Column(db.Boolean)
     count = db.Column(db.String(1000))
@@ -32,5 +33,5 @@ class Economy(db.Model):
         return paginated_results.items
     
     @classmethod
-    def find_by_id(cls, id):
-        return cls.query.get(id)
+    def find_by_id(cls, id, userId):
+        return cls.query.filter_by(id=id, userId=userId).first()

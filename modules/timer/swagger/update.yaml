@@ -5,7 +5,7 @@ parameters:
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/EditTimeStat"
+      $ref: "#/definitions/SaveTimer"
     
 responses:
   "200":
@@ -18,19 +18,25 @@ responses:
     description: ""
 
 definitions:
-  EditTimeStat:
+  SaveTimer:
     type: object
     properties:
       userId:
         type: string
         example: "26"
-      timeWork:
+      id:
         type: string
         example: "1"
-      timeRelax:
-        type: string
-        example: "1"
-
-
-
-
+      history:
+        type: json
+        example: {
+          'work': 10,
+          'relax': 10,
+        }
+      stat:
+        type: json
+        example: {
+          'timeRelax': 10,
+          'timeWork': 10,
+        }
+      

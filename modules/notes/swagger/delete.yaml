@@ -1,11 +1,11 @@
 tags:
-- Package -> Timer
+- Package -> Note
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/EditTimeStat"
+      $ref: "#/definitions/DeleteNote"
     
 responses:
   "200":
@@ -18,16 +18,13 @@ responses:
     description: ""
 
 definitions:
-  EditTimeStat:
+  DeleteNote:
     type: object
     properties:
       userId:
         type: string
         example: "26"
-      timeWork:
-        type: string
-        example: "1"
-      timeRelax:
+      id:
         type: string
         example: "1"
 

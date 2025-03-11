@@ -27,6 +27,19 @@ def _add():
             return response(data={},message=message1)
     except Exception as e:
         return ERROR(e)
+    
+@swag_from('../swagger/save.yaml')
+def _save():
+    try:
+        cont,message1 = checkPackage('sport',request.get_json()['userId'])
+        if (cont):
+            data,message = save(request.get_json())
+            return response(data=data,message=message)
+        else:
+            return response(data={},message=message1)
+    except Exception as e:
+        return ERROR(e)
+
 @swag_from('../swagger/delete.yaml')
 def _delete():
     try:
@@ -46,5 +59,6 @@ def _delete():
 sport_bp = Blueprint('sport_bp', __name__)
 sport_bp.add_url_rule('/sort/get',view_func=_get, methods=["POST"])
 sport_bp.add_url_rule('/sort/add',view_func=_add, methods=["POST"])
+sport_bp.add_url_rule('/sort/save',view_func=_save, methods=["POST"])
 sport_bp.add_url_rule('/sort/delete',view_func=_delete, methods=["DELETE"])
 

@@ -100,7 +100,7 @@ def delete(data):
 def stat(data):
     try: 
         stat = {"timer":"","economy":"","task":""}
-        packages = Packages.find_by_id(data['userId'])
+        packages = Packages.find_by_user(data['userId'])
         # if packages:
         #     if packages.timer:
         #         stat["timer"] = statInfoTimer(data)

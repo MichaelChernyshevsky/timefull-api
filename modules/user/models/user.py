@@ -2,7 +2,8 @@ from config.extensions import db
 from .info import Info
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    
+    id = db.Column(db.BigInteger, primary_key=True)
     email = db.Column(db.String(250))
     password = db.Column(db.String(250))
     phone = db.Column(db.String(250))
@@ -20,7 +21,7 @@ class User(db.Model):
             'password': self.password,
             'phone': self.phone,
             'packagesId': self.packages,
-            'info' : Info.find_by_id(self.info).serialize(),
+            'info' : Info.find_by_id(id=self.info,userId=self.id).serialize(),
             'admin': self.admin,
             'creator': self.creator,
             'subscribed' : self.subscribed,

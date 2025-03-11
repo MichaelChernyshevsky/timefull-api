@@ -29,7 +29,7 @@ def add(data):
     
 def edit(data):
     try: 
-        task = Task.find_by_id(id=data['taskId']).first()
+        task = Task.find_by_id(id=data['taskId'],userId=data['userId']).first()
         if(task):
             if ( data['title']):
                 task.title = data['title']

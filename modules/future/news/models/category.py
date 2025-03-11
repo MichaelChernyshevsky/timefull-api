@@ -17,5 +17,5 @@ class NewsCategory(db.Model):
         return cls.query.filter_by(name=name).first()
 
     @classmethod
-    def find_by_id(cls, id):
-        return cls.query.get(id)
+    def find_by_id(cls, id, userId):
+        return cls.query.filter_by(id=id, userId=userId).first()

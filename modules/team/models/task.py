@@ -1,7 +1,8 @@
 from config.extensions import db
 
 class TaskOfTeamModel(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    
+    id = db.Column(db.BigInteger, primary_key=True)
     userForId = db.Column(db.String(250))
     userCratedId = db.Column(db.String(250))
     title = db.Column(db.String(250))

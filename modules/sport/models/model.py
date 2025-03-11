@@ -2,7 +2,8 @@ from config.extensions import db
 
 
 class Sport(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    
+    id = db.Column(db.BigInteger, primary_key=True)
     userId = db.Column(db.String(250))
     title = db.Column(db.String(250))
     distant = db.Column(db.Integer)
@@ -29,7 +30,7 @@ class Sport(db.Model):
         return cls.query.filter_by(userId=userId)
     
     @classmethod
-    def find_by_id(cls, id,dateFrom, dateTo, page, countOnPage):
-        query = cls.query.filter_by(id=id).filter(cls.date >= dateFrom, cls.date <= dateTo)
+    def find_by_id(cls, id,userId,dateFrom, dateTo, page, countOnPage):
+        query = cls.query.filter_by(id=id, userId=userId).filter(cls.date >= dateFrom, cls.date <= dateTo)
         paginated_results = query.paginate(page=page, per_page=countOnPage, error_out=False)
         return paginated_results.items

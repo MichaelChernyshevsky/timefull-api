@@ -3,7 +3,8 @@ from .stat import TaskStat
 from sqlalchemy import cast, Integer
 
 class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    
+    id = db.Column(db.BigInteger, primary_key=True)
     userId = db.Column(db.String(250))
     title = db.Column(db.String(250))
     description = db.Column(db.String(2500))
@@ -33,5 +34,5 @@ class Task(db.Model):
         return cls.query.filter_by(userId=userId)
 
     @classmethod
-    def find_by_id(cls, id):
-        return cls.query.filter_by(id=id)
+    def find_by_id(cls, id, userId):
+        return cls.query.filter_by(id=id,userId=userId)

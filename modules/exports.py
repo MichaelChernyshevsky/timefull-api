@@ -8,3 +8,4 @@ from  modules.admin.index import admin_bp
 from  modules.packages.api.bp import  packages_bp
 from  modules.sport.api.index import sport_bp
 from  modules.team.api.bp import team_bp
+from  modules.notes.api.bp import notes_bp

@@ -6,10 +6,19 @@ from  ...tools.helper.json import *
 
         
     
-def editStat(data):
+def update(data):
     try: 
         timer = Timer.find_by_user(data['userId'])
-        timer.stat = editStatFunc(data=timer.stat,timeWork=data['timeWork'],timeRelax=data['timeRelax'])
+        timer.stat = json.dumps({
+            'timeRelax': int(data['stat']['timeRelax']),
+            'timeWork': int(data['stat']['timeWork'])
+        })
+        timer.history =json.dumps( {
+            'work': int(data['history']['work']),
+            'relax': int(data['history']['relax'])
+        })
+        
+
         db.session.commit()
         return {},'success'
     except Exception as e:
@@ -18,25 +27,12 @@ def editStat(data):
         },'unsuccess'
 
         
-    
-def editHistory(data):
-    try: 
-        timer = Timer.find_by_user(data['userId'])
-        timer.history = editHistoryFunc(data=timer.history,work=data['work'],relax=data['relax'])
-        db.session.commit()
-        return {},'success'
-      
-    except Exception as e:
-        return {
-            'Error':str(e)
-        },'unsuccess'
-
         
 def get(data):
     try: 
-        print(data)
         return Timer.find_by_user(data['userId']).serialize(),'success'
     except Exception as e:
+       
         return {
             'Error':str(e)
         },'unsuccess'

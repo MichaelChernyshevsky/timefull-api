@@ -1,11 +1,11 @@
 tags:
-- Package -> Timer
+- Package -> Sport
 parameters:
   - in: body
     name: sendResetLinkRequest
     type: Object
     schema:
-      $ref: "#/definitions/EditTimeHistory"
+      $ref: "#/definitions/SaveSport"
     
 responses:
   "200":
@@ -18,19 +18,16 @@ responses:
     description: ""
 
 definitions:
-  EditTimeHistory:
+  SaveSport:
     type: object
     properties:
       userId:
         type: string
         example: "26"
-      work:
-        type: string
-        example: "1"
-      relax:
-        type: string
-        example: "1"
-      
+      models:
+        type: json
+        example: {}
+     
 
 
 

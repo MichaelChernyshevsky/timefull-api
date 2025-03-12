@@ -1,0 +1,33 @@
+tags:
+- Package -> Note
+parameters:
+  - in: body
+    name: sendResetLinkRequest
+    type: Object
+    schema:
+      $ref: "#/definitions/DeleteNote"
+    
+responses:
+  "200":
+    description: ""
+    content:
+      application/json:
+        schema:
+          type: "string"
+  "404":
+    description: ""
+
+definitions:
+  DeleteNote:
+    type: object
+    properties:
+      userId:
+        type: string
+        example: "26"
+      id:
+        type: string
+        example: "1"
+
+
+
+

@@ -1,0 +1,40 @@
+tags:
+- Package -> Note
+parameters:
+  - in: body
+    name: sendResetLinkRequest
+    type: Object
+    schema:
+      $ref: "#/definitions/UpdateNote"
+    
+responses:
+  "200":
+    description: ""
+    content:
+      application/json:
+        schema:
+          type: "string"
+  "404":
+    description: ""
+
+definitions:
+  UpdateNote:
+    type: object
+    properties:
+      userId:
+        type: string
+        example: "26"
+      note:
+        type: list
+        example: {
+          '10' :{
+            'id': '10',
+            'userId': '26',
+            'title': 'title',
+            'note': 'note',
+          }
+        }
+
+
+
+

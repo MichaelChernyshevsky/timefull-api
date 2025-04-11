@@ -24,9 +24,14 @@ definitions:
       userId:
         type: string
         example: "26"
-      package: 
-        type: string
-        example: "timer"
+      packages: 
+        type: list
+        example: [{
+          "package" : "timer",
+          "state" : false
+        }]
+       
+     
       
 
 

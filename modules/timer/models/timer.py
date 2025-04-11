@@ -15,7 +15,7 @@ class Timer(db.Model):
             'id': self.id,
             'userId': self.userId,
             'history': fromStringToJson(self.history),
-            'stat':fromStringToJson(self.stat),
+            'historyForTimer':fromStringToJson(self.stat),
         }
     @classmethod
     def find_by_user(cls, userId):

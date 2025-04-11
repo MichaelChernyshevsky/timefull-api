@@ -1,9 +1,12 @@
+from flask import Blueprint, request, jsonify, current_app as app, render_template
+from modules.tools.response import *
+from flasgger import swag_from
 # user
 from modules.user.models.user import User
 from modules.user.models.info import Info
 from modules.user.models.stat import Stat
 # economy
-from modules.economy.models.economy import Economy
+from modules.economy.models.model import Economy
 # timer
 from modules.timer.models.timer import Timer
 # task 
@@ -11,6 +14,8 @@ from modules.task.models.task import Task
 from modules.task.models.stat import TaskStat
 # packages
 from modules.packages.model.packages import Packages
+
+
 
 
 def info(data):
@@ -77,3 +82,12 @@ def wipe(data):
 
     except Exception as e:
         return {} , "unsuccess"
+
+@swag_from('./swagger/info.yaml')
+def _info():
+    try:
+        data,message = info(request.get_json())
+        return response(data=data,message=message)
+    except Exception as e:
+        return ERROR(e)
+    

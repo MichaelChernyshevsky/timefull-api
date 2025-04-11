@@ -57,8 +57,8 @@ def _delete():
 
     
 sport_bp = Blueprint('sport_bp', __name__)
-sport_bp.add_url_rule('/sort/get',view_func=_get, methods=["POST"])
-sport_bp.add_url_rule('/sort/add',view_func=_add, methods=["POST"])
-sport_bp.add_url_rule('/sort/save',view_func=_save, methods=["POST"])
-sport_bp.add_url_rule('/sort/delete',view_func=_delete, methods=["DELETE"])
+sport_bp.add_url_rule('/sport/get',view_func=_get, methods=["POST"])
+sport_bp.add_url_rule('/sport/add',view_func=_add, methods=["POST"])
+sport_bp.add_url_rule('/sport/save',view_func=_save, methods=["POST"])
+sport_bp.add_url_rule('/sport/delete',view_func=_delete, methods=["DELETE"])
 

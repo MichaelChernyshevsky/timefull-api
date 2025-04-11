@@ -33,10 +33,10 @@ definitions:
           'work': 10,
           'relax': 10,
         }
-      stat:
+      historyForTimer:
         type: json
         example: {
-          'timeRelax': 10,
-          'timeWork': 10,
+          'work': 10,
+          'relax': 10,
         }
       

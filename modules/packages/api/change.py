@@ -8,33 +8,36 @@ from modules.tools.response import *
 def _changeState(data):
     try: 
         state = 'Not changed'
+        count = 0
         packages = Packages.find_by_user(data['userId'])
-        match data['package']:
-            case 'timer':
-                if (packages.timer):
-                  pass
-                else:
-                    from modules.timer.api.business import createTimer
-                    createTimer(data)
-                packages.timer = not packages.timer 
-                state = 'changed'
-            case 'task':
-                packages.tasks = not packages.tasks
-                state = 'changed'
-            case 'team':
-                packages.team = not packages.team
-                state = 'changed'
-            case 'economy':
-                packages.economy = not packages.economy 
-                state = 'changed'
-            case 'sport':
-                packages.sport = not packages.sport 
-                state = 'changed'
-            case 'note':
-                packages.note = not packages.note 
-                state = 'changed'
+        for package in data['packages']:
+            match package['package']:
+                case 'timer':
+                    packages.timer =  package['state']
+                    state = 'changed'
+                    count += 1
+                case 'task':
+                    packages.tasks =  package['state']
+                    state = 'changed'
+                    count += 1
+                case 'team':
+                    packages.team =  package['state']
+                    state = 'changed'
+                    count += 1
+                case 'economy':
+                    packages.economy =  package['state']
+                    state = 'changed'
+                    count += 1
+                case 'sport':
+                    packages.sport =  package['state']
+                    state = 'changed'
+                    count += 1
+                case 'note':
+                    packages.note =  package['state']
+                    state = 'changed'
+                    count += 1
         db.session.commit()
-        return {'state':state},'success'
+        return {'state':state,'count':count},'success'
     except Exception as e:
         return {
             'Error':str(e)

@@ -1,6 +1,6 @@
 from flasgger import Swagger
 
-from packages.exports import *
+from  modules.exports import *
 
 
 
@@ -13,6 +13,12 @@ def register_blueprints(app):
     app.register_blueprint(timer_bp)
     app.register_blueprint(economy_bp)
     app.register_blueprint(sport_bp)
+    # app.register_blueprint(team_bp)
+    app.register_blueprint(notes_bp)
+
+
+
+    
 
     
 

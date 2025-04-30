@@ -1,0 +1,48 @@
+tags:
+- Package -> Economy
+parameters:
+  - in: body
+    name: sendResetLinkRequest
+    type: Object
+    schema:
+      $ref: "#/definitions/AddEconomy"
+    
+responses:
+  "200":
+    description: ""
+    content:
+      application/json:
+        schema:
+          type: "string"
+  "404":
+    description: ""
+
+definitions:
+  AddEconomy:
+    type: object
+    properties:
+      userId:
+        type: string
+        example: "26"
+      title:
+        type: string
+        example: "Run"
+      description:
+        type: string
+        example: "Run"
+      count:
+        type: int
+        example: 5
+      income:
+        type: bool
+        example: True
+      id:
+        type: int
+        example: 1
+      date:
+        type: string
+        example: "102392131"
+
+
+
+

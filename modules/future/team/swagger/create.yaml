@@ -1,0 +1,41 @@
+tags:
+- Package -> Team
+parameters:
+  - in: body
+    name: sendResetLinkRequest
+    type: Object
+    schema:
+      $ref: "#/definitions/AddTeam"
+    
+responses:
+  "200":
+    description: ""
+    content:
+      application/json:
+        schema:
+          type: "string"
+  "404":
+    description: ""
+
+definitions:
+  AddTeam:
+    type: object
+    properties:
+      userId:
+        type: string
+        example: "26"
+      title:
+        type: string
+        example: "title"
+      description:
+        type: string
+        example: "description"
+      columns:
+        type: string
+        example: "future,now,finish"
+
+      
+
+
+
+

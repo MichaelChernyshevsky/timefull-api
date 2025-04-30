@@ -1,0 +1,46 @@
+tags:
+- Package -> Team
+parameters:
+  - in: body
+    name: sendResetLinkRequest
+    type: Object
+    schema:
+      $ref: "#/definitions/TaskDelete"
+    
+responses:
+  "200":
+    description: ""
+    content:
+      application/json:
+        schema:
+          type: "string"
+  "404":
+    description: ""
+
+definitions:
+  TaskDelete:
+    type: object
+    properties:
+      userId:
+        type: string
+        example: "26"
+      title:
+        type: string
+        example: "title"
+      description:
+        type: string
+        example: "description"
+      date:
+        type: int
+        example: 019231
+      countOnDay:
+        type: int
+        example: 1
+      countOnTask:
+        type: int
+        example: 1
+      
+
+
+
+

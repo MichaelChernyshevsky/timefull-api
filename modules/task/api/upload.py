@@ -25,8 +25,8 @@ def _upload(data):
                 currentModel.title = _model['title']
                 currentModel.date = _model['date']
                 currentModel.description = _model['description']
-                currentModel.count = _model['count']
-                currentModel.income = _model['income']
+                currentModel.countOnTask = _model['countOnTask']
+                currentModel.countOnDay = _model['countOnTask']
                 countUpdated += 1
                 added = True
             if added == False:
@@ -46,7 +46,7 @@ def _upload(data):
     except Exception as e:
         return {'Error': str(e)}, 'unsuccess'
 
-@swag_from('../swagger/upload.yaml')
+# @swag_from('../swagger/upload.yaml')
 def upload():
     try:
         cont, message1 = checkPackage('task', request.get_json()['userId'])

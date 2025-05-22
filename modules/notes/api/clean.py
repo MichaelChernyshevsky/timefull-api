@@ -12,20 +12,25 @@ def _clean(data):
     try:
         user_id = data['userId']
         notes_ids = data['notesId']  
-        count = 0
+        countDeleted = 0
+        countUpdateOrAdd = 0
 
+    
         
         all_notes = Note.query.filter_by(userId=user_id).all()
-
+       
         for note in all_notes:
             if note.id not in notes_ids:
-                count += 1
+                countDeleted += 1
                 db.session.delete(note)
+            else:
+                countUpdateOrAdd += 1
+
 
        
         db.session.commit()
 
-        return {'Delet' : count}, 'success'
+        return {'Delet' : countDeleted,'UpdateOrAdd' : countUpdateOrAdd}, 'success'
     except Exception as e:
         return {
             'Error':str(e)

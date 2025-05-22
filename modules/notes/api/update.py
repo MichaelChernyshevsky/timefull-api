@@ -9,6 +9,7 @@ def _update(data):
     try:
         added = 0
         updated = 0
+        print(data)
         user_id = data['note'][list(data['note'].keys())[0]]['userId']  
         for key in data['note']:
             note_data = data['note'][key]
